@@ -1,0 +1,18 @@
+ru:
+ #header
+ #lang
+ llang:  "Русский"
+ len:    "English"
+ lru:    "Русский"
+ lkz:    "Казакша"
+ #links
+ main:   "Главная"
+ gallery:    "Галерея"
+ press:  "Пресса"
+ news:   "Новости"
+ biography:  "Биография"
+ contacts:   "Контакты"
+ #homepage
+ welcome:    "Добро пожаловать!"
+ to_art_gallery_by_the_name_of:  "В галерею искусcтв имени"
+ issatay_issabayevs:             "Исатая Исабаева"

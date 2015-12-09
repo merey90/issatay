@@ -32,19 +32,24 @@
   </a>
 </div>
 <div class="text-center jumbotron">
-  <h1>Добро пожаловать!</h1>
+  <div class="row" style="margin:0px;">
+  <div class="col-md-6 col-xs-12">
+    <div class="row">
+      <%= link_to image_tag("issatay-portrait.png", alt: "Rails logo", style: "width:80%"), 'http://rubyonrails.org/' %>  
+    </div>
+  </div>
+  <div class="col-md-6 col-xs-12">
+  <h1><%=t('welcome')%></h1>
   <h2>
     <% if logged_in? %>
       <%= current_user.name %>
     <% else %>
-      В галлерею исскуств имени<br>
-      <a target="_blank" href="https://ru.wikipedia.org/wiki/%D0%98%D1%81%D0%B0%D0%B1%D0%B0%D0%B5%D0%B2,_%D0%98%D1%81%D0%B0%D1%82%D0%B0%D0%B9_%D0%9D%D1%83%D1%80%D1%8B%D1%88%D0%B5%D0%B2%D0%B8%D1%87">Исатая Исабаева</a>
+      <%=t('to_art_gallery_by_the_name_of')%><br>
+      <a target="_blank" href="https://ru.wikipedia.org/wiki/%D0%98%D1%81%D0%B0%D0%B1%D0%B0%D0%B5%D0%B2,_%D0%98%D1%81%D0%B0%D1%82%D0%B0%D0%B9_%D0%9D%D1%83%D1%80%D1%8B%D1%88%D0%B5%D0%B2%D0%B8%D1%87"><%=t('issatay_issabayevs')%></a>
     <% end %>
   </h2>
-</div>
-<div class="row">
-  <div class="col-xs-12">
-    <%= link_to image_tag("issatay-portrait.png", alt: "Rails logo", class: "col-xs-12 col-md-6"), 'http://rubyonrails.org/' %>
+  </div>
   </div>
 </div>
+
 

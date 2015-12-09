@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @press.title %>
+</p>
+
+<p>
+  <strong>Short_body:</strong>
+  <%= @press.short_body %>
+</p>
+
+<p>
+  <strong>Body:</strong>
+  <%= @press.body %>
+</p>
+
+<p>
+  <strong>Images:</strong>
+  <%= @press.image1 %>
+</p>
+
+<%= link_to 'Edit', edit_press_path(@press) %> |
+<%= link_to 'Back', presses_path %>

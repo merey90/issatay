@@ -1,5 +1,7 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "font-awesome-sprockets";
+@import "font-awesome";
 
 /* mixins, variables, etc. */
 
@@ -24,6 +26,7 @@ $gray-medium-light: #eaeaea;
 /* universal */
 
 body {
+  height: 100%;
   padding-top: 51px;
   background: url(/assets/main_background.png);
   background-color: #444;
@@ -44,9 +47,22 @@ textarea {
     margin-bottom: 10px;
   }
 }
-
-#mainContainer{
+#wrap{
+  min-height: 100%;
   background-color: #999;
+  #mainContainer{
+    overflow:auto;
+    padding-bottom:211px;
+  }  
+}
+
+#footerContainer{
+  background-color: #999;
+  position: relative;
+  margin-top: -211px; /* negative value of footer height */
+  height: 211px;
+  clear:both;
+  padding-top:20px;
 }
 
 /* typography */
@@ -129,6 +145,9 @@ p {
     > li > a{
       border-left: 2px solid #ccc;
     }
+    > li:last-child > a{
+      border-right: 2px solid #ccc;
+    }
     > .active > a, > .active > a:hover, > .active > a:focus{
       border-left: 2px solid #00f3ff;
 
@@ -142,7 +161,6 @@ p {
 /* footer */
 
 footer {
-  margin-top: 45px;
   padding-top: 5px;
   border-top: 1px solid $gray-medium-light;
   color: $gray-light;
@@ -171,7 +189,7 @@ footer {
   clear: both;
   float: left;
   width: 100%;
-  margin-top: 45px;
+  margin-top: 25px;
   @include box_sizing;
 }
 

@@ -1,24 +1,35 @@
 Rails.application.routes.draw do
-  get 'password_resets/new'
-
-  get 'password_resets/edit'
-
-  get 'sessions/new'
-
-
-  root             'static_pages#home'
-  get 'help'    => 'static_pages#help'
-  get 'about'   => 'static_pages#about'
-  get 'contact' => 'static_pages#contact'
-  get 'gallery' => 'static_pages#gallery'
-  get 'signup'  => 'users#new'
   
-  get    'login'   => 'sessions#new'
-  post   'login'   => 'sessions#create'
-  delete 'logout'  => 'sessions#destroy'
+  get '/:locale' => 'static_pages#home'
   
-  resources :users,               only: [:index, :show, :edit, :update, :destroy]
-  resources :password_resets,     only: [:new, :create, :edit, :update]
+  scope "/:locale", locale: /en|ru|kz/ do
+    root to: redirect("/%{locale}")
+    
+    
+    
+    get 'password_resets/new'
+    get 'password_resets/edit'
+
+    get 'sessions/new'
+
+    get 'home'    => 'static_pages#home'
+    get 'help'    => 'static_pages#help'
+    get 'about'   => 'static_pages#about'
+    get 'contact' => 'static_pages#contact'
+    get 'gallery' => 'static_pages#gallery'
+    get 'signup'  => 'users#new'
+  
+    get    'login'   => 'sessions#new'
+    post   'login'   => 'sessions#create'
+    delete 'logout'  => 'sessions#destroy'
+  
+    resources :users,               only: [:index, :show, :edit, :update, :destroy]
+    resources :password_resets,     only: [:new, :create, :edit, :update]
+    resources :presses
+  end
+  
+  root to: redirect("/#{I18n.default_locale}"), as: :redirected_root
+  
   
   
   # The priority is based upon order of creation: first created -> highest priority.
