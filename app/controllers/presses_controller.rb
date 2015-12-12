@@ -65,8 +65,6 @@ class PressesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_press
       @press = Press.find(params[:id])
-      @press.body_kz = @press.body_kz.force_encoding('utf-8')
-      @press.body_ru = @press.body_ru.force_encoding('utf-8')
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

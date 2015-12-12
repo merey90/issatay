@@ -43,7 +43,7 @@
 
 <p>
   <strong>Body:</strong>
-  <%= @press.body_ru %>
+  <%= @press.body_ru.force_encoding("utf-8") %>
 </p>
 <% end %>
 <div class="clearfix"></div>
