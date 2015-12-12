@@ -8,6 +8,7 @@ module ApplicationHelper
             page_title + " | " + base_title
         end
     end
+    # Returns the list of languages.
     def lang_switcher
         I18n.available_locales.each do |loc|
             locale_param = request.path == root_path ? root_path(locale: loc) : params.merge(locale: loc)

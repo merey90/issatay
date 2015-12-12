@@ -7,7 +7,7 @@
   <thead>
     <tr>
       <th>Title</th>
-      <th>Body</th>
+      <th>Short Body</th>
       <th>Images</th>
       <th colspan="3"></th>
     </tr>
@@ -17,12 +17,12 @@
     <% @presses.each do |press| %>
       <tr>
         <td><%= press.title %></td>
-        <td><%= press.body %></td>
-        <td><%= press.images %></td>
+        <td><%= press.short_body %></td>
+        <td><%= press.image %></td>
         <td><%= link_to 'Show', press %></td>
         <% if logged_in? %>
         <td><!%= link_to 'Edit', edit_press_path(press) %></td>
-        <td><!%= link_to 'Destroy', press, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Destroy', press, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <% end %>
       </tr>
     <% end %>

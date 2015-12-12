@@ -1,8 +1,7 @@
-<%= form_for(@press, :html => {:class => "form-horizontal"}) do |f| %>
+<%= form_for(@press, :html => {:class => "form-horizontal", :role=> "form"}) do |f| %>
   <% if @press.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@press.errors.count, "error") %> prohibited this press from being saved:</h2>
-
       <ul>
       <% @press.errors.full_messages.each do |message| %>
         <li><%= message %></li>
@@ -10,25 +9,35 @@
       </ul>
     </div>
   <% end %>
-
   <div class="form-group">
-    <%= f.label :title, :class => "control-label col-sm-2" %>
-    <div class="col-sm-10">
-      <%= f.text_field :title, :class => "form-control" %>
+    <div class="col-xs-2 form-group fileupload_container">
+      asd
+      <!--<input id="fileupload" class="fileupload" type="file" name="files[]" data-url="server/php/" multiple>-->
+      <!--<!%= f.file_field :image, :class => "form-control" %>-->
+    </div>
+    <div class="col-xs-10 form-horizontal">
+      <div class="form-group">
+        <%= f.label :title, :class => "control-label col-sm-2" %>
+        <div class="col-sm-10">
+          <%= f.text_field :title, :class => "form-control" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :title_kz, :class => "control-label col-sm-2" %>
+        <div class="col-sm-10">
+        <%= f.text_field :title_kz, :class => "form-control" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :title_ru, :class => "control-label col-sm-2" %>
+        <div class="col-sm-10">
+        <%= f.text_field :title_ru, :class => "form-control" %>
+        </div>
+      </div>
     </div>
   </div>
-  <div class="form-group">
-    <%= f.label :title_kz, :class => "control-label col-sm-2" %>
-    <div class="col-sm-10">
-    <%= f.text_field :title_kz, :class => "form-control" %>
-    </div>
-  </div>
-  <div class="form-group">
-    <%= f.label :title_ru, :class => "control-label col-sm-2" %>
-    <div class="col-sm-10">
-    <%= f.text_field :title_ru, :class => "form-control" %>
-    </div>
-  </div>
+  
+  
   <div class="form-group">
     <%= f.label :short_body, :class => "control-label col-sm-2" %>
     <div class="col-sm-10">
@@ -50,31 +59,34 @@
   <div class="form-group">
     <%= f.label :body, :class => "control-label col-sm-2" %>
     <div class="col-sm-10">
-    <%= f.text_area :body, :class => "form-control" %>
+    <%= f.hidden_field :body, :class => "hidden_body" %>
+    <div class="form-control summernote"><%=raw @press.body %></div>
     </div>
   </div>
   <div class="form-group">
     <%= f.label :body_kz, :class => "control-label col-sm-2" %>
     <div class="col-sm-10">
-    <%= f.text_area :body_kz, :class => "form-control" %>
+    <%= f.hidden_field :body_kz, :class => "hidden_body" %>
+    <div class="form-control summernote"><%=raw @press.body_kz %></div>
     </div>
   </div>
   <div class="form-group">
     <%= f.label :body_ru, :class => "control-label col-sm-2" %>
     <div class="col-sm-10">
-    <%= f.text_area :body_ru, :class => "form-control" %>
+    <%= f.hidden_field :body_ru, :class => "hidden_body" %>
+    <div class="form-control summernote"><%=raw @press.body_ru %></div>
     </div>
   </div>
+  
   <div class="form-group">
-    <%= f.text_area :image1, :class => "form-control" %>
-    <%= f.text_area :image2, :class => "form-control" %>
-    <%= f.text_area :image3, :class => "form-control" %>
-    <%= f.text_area :image4, :class => "form-control" %>
-    <%= f.text_area :image5, :class => "form-control" %>
-    <%= f.text_area :image6, :class => "form-control" %>
-    <%= f.text_area :image7, :class => "form-control" %>
+    <% f.object.simple_images.each do |image| %>
+      <%= f.fields_for photo do |image_form| %>
+        <%= image_form.file_field :url, :class => "form-control" %>
+      <% end %>
+    <% end %>
   </div>
-  <div class="actions">
-    <%= f.submit %>
+  
+  <div class="form-group">
+    <%= f.submit 'SUBMIT', :class => "form-control btn btn-success form_submit" %>
   </div>
 <% end %>

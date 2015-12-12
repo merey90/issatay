@@ -1,5 +1,6 @@
 <p id="notice"><%= notice %></p>
-
+<%= I18n.locale %>
+<% if I18n.locale == :en %>
 <p>
   <strong>Title:</strong>
   <%= @press.title %>
@@ -12,13 +13,47 @@
 
 <p>
   <strong>Body:</strong>
-  <%= @press.body %>
+  <%=raw @press.body %>
+</p>
+<% elsif I18n.locale == :kz %>
+<p>
+  <strong>Title:</strong>
+  <%= @press.title_kz %>
 </p>
 
 <p>
-  <strong>Images:</strong>
-  <%= @press.image1 %>
+  <strong>Short_body:</strong>
+  <%= @press.short_body_kz %>
 </p>
 
+<p>
+  <strong>Body:</strong>
+  <%= @press.body_kz.force_encoding("utf-8") %>
+</p>
+<%  elsif I18n.locale == :ru %>
+<p>
+  <strong>Title:</strong>
+  <%= @press.title_ru %>
+</p>
+
+<p>
+  <strong>Short_body:</strong>
+  <%= @press.short_body_ru %>
+</p>
+
+<p>
+  <strong>Body:</strong>
+  <%= @press.body_ru %>
+</p>
+<% end %>
+<div class="clearfix"></div>
+
+<p>
+  <strong>Image:</strong>
+  <%= @press.image %>
+</p>
+<div class="clearfix"></div>
+<% if logged_in? %>
 <%= link_to 'Edit', edit_press_path(@press) %> |
+<% end %>
 <%= link_to 'Back', presses_path %>

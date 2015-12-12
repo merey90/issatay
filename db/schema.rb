@@ -11,32 +11,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151207110654) do
+ActiveRecord::Schema.define(version: 20151210044059) do
 
   create_table "paragraphs", force: :cascade do |t|
     t.string   "title"
     t.string   "title_kz"
     t.string   "title_ru"
-    t.text     "body"
-    t.text     "body_kz"
-    t.text     "body_ru"
-    t.text     "image1"
-    t.text     "image2"
-    t.text     "image3"
-    t.text     "image4"
-    t.text     "image5"
-    t.text     "image6"
-    t.text     "image7"
+    t.binary   "body"
+    t.binary   "body_kz"
+    t.binary   "body_ru"
+    t.string   "image"
+    t.integer  "paragraphable_id"
+    t.string   "paragraphable_type"
     t.datetime "deleted_at"
-    t.integer  "press_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
   end
 
   add_index "paragraphs", ["body"], name: "index_paragraphs_on_body"
   add_index "paragraphs", ["body_kz"], name: "index_paragraphs_on_body_kz"
   add_index "paragraphs", ["body_ru"], name: "index_paragraphs_on_body_ru"
-  add_index "paragraphs", ["press_id"], name: "index_paragraphs_on_press_id"
+  add_index "paragraphs", ["paragraphable_type", "paragraphable_id"], name: "index_paragraphs_on_paragraphable_type_and_paragraphable_id"
   add_index "paragraphs", ["title"], name: "index_paragraphs_on_title"
   add_index "paragraphs", ["title_kz"], name: "index_paragraphs_on_title_kz"
   add_index "paragraphs", ["title_ru"], name: "index_paragraphs_on_title_ru"
@@ -45,21 +40,16 @@ ActiveRecord::Schema.define(version: 20151207110654) do
     t.string   "title"
     t.string   "title_kz"
     t.string   "title_ru"
-    t.text     "body"
-    t.text     "body_kz"
-    t.text     "body_ru"
-    t.string   "short_body"
-    t.string   "short_body_kz"
-    t.string   "short_body_ru"
-    t.text     "url"
-    t.text     "image1"
-    t.text     "image2"
-    t.text     "image3"
-    t.text     "image4"
-    t.text     "image5"
-    t.text     "image6"
-    t.text     "image7"
+    t.binary   "body"
+    t.binary   "body_kz"
+    t.binary   "body_ru"
+    t.text     "short_body"
+    t.text     "short_body_kz"
+    t.text     "short_body_ru"
+    t.string   "url"
+    t.text     "image"
     t.datetime "deleted_at"
+    t.integer  "user_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
   end
@@ -73,6 +63,17 @@ ActiveRecord::Schema.define(version: 20151207110654) do
   add_index "presses", ["title"], name: "index_presses_on_title"
   add_index "presses", ["title_kz"], name: "index_presses_on_title_kz"
   add_index "presses", ["title_ru"], name: "index_presses_on_title_ru"
+  add_index "presses", ["user_id"], name: "index_presses_on_user_id"
+
+  create_table "simple_images", force: :cascade do |t|
+    t.string   "image"
+    t.integer  "imageable_id"
+    t.string   "imageable_type"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "simple_images", ["imageable_type", "imageable_id"], name: "index_simple_images_on_imageable_type_and_imageable_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
