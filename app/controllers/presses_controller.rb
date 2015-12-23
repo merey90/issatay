@@ -17,15 +17,24 @@ class PressesController < ApplicationController
   # GET /presses/new
   def new
     @press = current_user.presses.new
-    @press.paragraphs.new
+    @press.simple_images.build
   end
 
   # GET /presses/1/edit
   def edit
+    # @press.simple_images.build
+  end
+  
+  def add_simple_images
+    if @press == nil || @press == ""
+     @press = current_user.presses.new
+    end
+    
+    @press.simple_images.build
+    render "presses/add_simple_image", :layout => false
   end
 
   # POST /presses
-  # POST /presses.json
   def create
     @press = current_user.presses.new(press_params)
 
@@ -40,7 +49,6 @@ class PressesController < ApplicationController
   end
 
   # PATCH/PUT /presses/1
-  # PATCH/PUT /presses/1.json
   def update
 
       if @press.update(press_params)
@@ -54,7 +62,6 @@ class PressesController < ApplicationController
   end
 
   # DELETE /presses/1
-  # DELETE /presses/1.json
   def destroy
     @press.destroy
     flash[:success] = "Press was successfully destroyed"
@@ -69,6 +76,6 @@ class PressesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def press_params
-      params.require(:press).permit(:title, :title_kz, :title_ru, :body, :body_kz, :body_ru, :short_body, :short_body_kz, :short_body_ru, :image)
+      params.require(:press).permit(:title, :title_kz, :title_ru, :body, :body_kz, :body_ru, :short_body, :short_body_kz, :short_body_ru, simple_images_attributes: [:picture, :title, :description, :_destroy, :id])
     end
 end

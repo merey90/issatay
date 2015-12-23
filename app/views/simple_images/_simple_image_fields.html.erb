@@ -1,0 +1,40 @@
+<%= f.fields_for :simple_images, :child_index => child_index do |simple_images_form| %>
+  <div class="simple_images_form col-xs-6">
+    <span class="hidden"><%= simple_images_form.check_box :_destroy, :class => "remove_simage_cbx" %></span>
+    <a href="#" class="btn btn-danger remove_simage" title="Удалить картинку">X</a>
+    <div class="overlay delete"></div>
+    <div class="row simple_image_block">
+      <div class="col-xs-4 previews">
+        <span class="hidden"><%= simple_images_form.file_field :picture, :class => "simage_input", accept: 'image/jpeg,image/gif,image/png' %></span>
+        <% if simple_images_form.object.picture? %>
+          <%= image_tag simple_images_form.object.picture.url, :class => "image_preview", :title => "Изменить картинку" %>
+        <% elsif %>
+          <%= image_tag 'paintbrush', :class => "image_preview", :title => "Изменить картинку" %>
+        <% end %>
+      </div>
+      <div class="col-xs-8 titles">
+        <div class="form-group">
+          <%= simple_images_form.text_field :title, :class => "form-control", :placeholder => "Title" %>
+        </div>
+        <div class="form-group">
+          <%= simple_images_form.text_field :title_kz, :class => "form-control", :placeholder => "Атау" %>
+        </div>
+        <div class="form-group">
+          <%= simple_images_form.text_field :title_ru, :class => "form-control", :placeholder => "Название" %>
+        </div>
+      </div>
+      <div class="clearfix"></div>
+      <div class="col-xs-12 descriptions">
+        <div class="form-group">
+          <%= simple_images_form.text_area :description, :class => "form-control", :placeholder => "Description" %>
+        </div>
+        <div class="form-group">
+          <%= simple_images_form.text_area :description_kz, :class => "form-control", :placeholder => "Сипаттамасы" %>
+        </div>
+        <div class="form-group">
+          <%= simple_images_form.text_area :description_ru, :class => "form-control", :placeholder => "Описание" %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

@@ -1,5 +1,4 @@
 <p id="notice"><%= notice %></p>
-<%= I18n.locale %>
 <% if I18n.locale == :en %>
 <p>
   <strong>Title:</strong>
@@ -15,6 +14,11 @@
   <strong>Body:</strong>
   <%=raw @press.body %>
 </p>
+
+
+
+
+
 <% elsif I18n.locale == :kz %>
 <p>
   <strong>Title:</strong>
@@ -30,6 +34,12 @@
   <strong>Body:</strong>
   <%= @press.body_kz.force_encoding("utf-8") %>
 </p>
+
+
+
+
+
+
 <%  elsif I18n.locale == :ru %>
 <p>
   <strong>Title:</strong>
@@ -46,14 +56,28 @@
   <%= @press.body_ru.force_encoding("utf-8") %>
 </p>
 <% end %>
+
 <div class="clearfix"></div>
 
 <p>
-  <strong>Image:</strong>
-  <%= @press.image %>
+  <strong>Images:</strong>
+  <% @press.simple_images.each do |simage| %>
+    <div class="row">
+      <div class="col-xs-12">
+      <%= simage.title %>
+      <%= simage.description %>
+      <%= image_tag simage.picture.url if simage.picture? %>
+      </div>
+    </div>
+  <% end %>
 </p>
+
+
 <div class="clearfix"></div>
+
+
 <% if logged_in? %>
 <%= link_to 'Edit', edit_press_path(@press) %> |
+<%= link_to 'Destroy', @press, method: :delete, data: { confirm: 'Are you sure?' } %> |
 <% end %>
 <%= link_to 'Back', presses_path %>

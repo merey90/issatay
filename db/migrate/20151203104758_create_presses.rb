@@ -13,8 +13,6 @@ class CreatePresses < ActiveRecord::Migration
       t.text :short_body_ru, index: true
       t.string :url
       
-      t.text :image
-      
       t.datetime :deleted_at
       
       t.references :user, index: true, foreign_key: true

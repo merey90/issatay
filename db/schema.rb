@@ -66,14 +66,26 @@ ActiveRecord::Schema.define(version: 20151210044059) do
   add_index "presses", ["user_id"], name: "index_presses_on_user_id"
 
   create_table "simple_images", force: :cascade do |t|
-    t.string   "image"
+    t.string   "picture"
+    t.string   "title"
+    t.string   "title_kz"
+    t.string   "title_ru"
+    t.text     "description"
+    t.text     "description_kz"
+    t.text     "description_ru"
     t.integer  "imageable_id"
     t.string   "imageable_type"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
   end
 
+  add_index "simple_images", ["description"], name: "index_simple_images_on_description"
+  add_index "simple_images", ["description_kz"], name: "index_simple_images_on_description_kz"
+  add_index "simple_images", ["description_ru"], name: "index_simple_images_on_description_ru"
   add_index "simple_images", ["imageable_type", "imageable_id"], name: "index_simple_images_on_imageable_type_and_imageable_id"
+  add_index "simple_images", ["title"], name: "index_simple_images_on_title"
+  add_index "simple_images", ["title_kz"], name: "index_simple_images_on_title_kz"
+  add_index "simple_images", ["title_ru"], name: "index_simple_images_on_title_ru"
 
   create_table "users", force: :cascade do |t|
     t.string   "name"

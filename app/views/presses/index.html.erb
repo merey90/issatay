@@ -1,35 +1,29 @@
 <% provide(:title, t("press")) %>
 <p id="notice"><%= notice %></p>
-
-<h1>Listing Presses</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Short Body</th>
-      <th>Images</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @presses.each do |press| %>
-      <tr>
-        <td><%= press.title %></td>
-        <td><%= press.short_body %></td>
-        <td><%= press.image %></td>
-        <td><%= link_to 'Show', press %></td>
-        <% if logged_in? %>
-        <td><!%= link_to 'Edit', edit_press_path(press) %></td>
-        <td><%= link_to 'Destroy', press, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% end %>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-<br>
-
 <% if logged_in? %>
-<%= link_to 'New Press', new_press_path %>
+<%= link_to 'New Press', new_press_path, :class => "btn btn-success form-control" %>
 <% end %>
+
+  <div class="row presses_container">
+    <% @presses.each do |press| %>
+      <div class="row press_block">
+        <div class="col-xs-1">
+          <% if press.simple_images.any? %>
+            <%= image_tag press.simple_images.first.picture.url, :class => "press_picture", :title => "Details..." %>
+          <% elsif %>
+            <%= image_tag 'paintbrush', :class => "press_picture", :title => "Details..." %>
+          <% end %>
+        </div>
+        <div class="col-xs-11">
+          <div class="row">
+            <%= link_to press.title, press %>
+          </div>
+          <div class="row">
+            <%= press.short_body %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+<br>

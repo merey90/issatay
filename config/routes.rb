@@ -17,15 +17,19 @@ Rails.application.routes.draw do
     get 'about'   => 'static_pages#about'
     get 'contact' => 'static_pages#contact'
     get 'gallery' => 'static_pages#gallery'
-    get 'signup'  => 'users#new'
+    # get 'signup'  => 'users#new'
   
     get    'login'   => 'sessions#new'
     post   'login'   => 'sessions#create'
     delete 'logout'  => 'sessions#destroy'
-  
+    
     resources :users,               only: [:index, :show, :edit, :update, :destroy]
     resources :password_resets,     only: [:new, :create, :edit, :update]
-    resources :presses
+    resources :presses do
+       collection do
+           get :add_simple_images
+       end
+    end
   end
   
   root to: redirect("/#{I18n.default_locale}"), as: :redirected_root

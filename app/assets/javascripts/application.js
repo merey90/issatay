@@ -17,7 +17,6 @@
 //= require bootstrap
 //= require summernote
 //= require bootstrap/collapse
-//= require jquery-fileupload/basic
 //= require_tree .
 
 // load specific locale(ru-RU)

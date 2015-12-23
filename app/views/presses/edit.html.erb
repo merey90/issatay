@@ -6,45 +6,19 @@
 <%= link_to 'Back', presses_path %>
 
 <script type="text/javascript">
+    
     $(function(){
-        
-        $('.summernote').summernote({
-          lang: 'ru-RU',
-          minHeight: 200,
-          height: 200,
-          callbacks: {
-            onInit: function() {
-                $('.summernote').each(function(){
+        $('.summernote').each(function(){
+            $(this).summernote({
+              lang: 'ru-RU',
+              minHeight: 200,
+              height: 200,
+              callbacks: {
+                onInit: function() {
                    $(this).parent().find('.hidden_body').val($(this).summernote('code'));
-                });;
-            }
-          }
-        });
-        
-        $('.fileupload').fileupload({
-            dataType: 'json',
-            add: function (e, data) {
-                data.context = $('<button/>').text('Upload')
-                    .appendTo($(".fileupload_container"))
-                    .click(function () {
-                        data.context = $('<p/>').text('Uploading...').replaceAll($(this));
-                        data.submit();
-                    });
-            },
-            done: function (e, data) {
-                
-                data.context.text('Upload finished.');
-            }
-        });
-        
-        $('.form_submit').click(function(e){
-            e.preventDefault();
-            
-            $('.summernote').each(function(){
-               $(this).parent().find('.hidden_body').val($(this).summernote('code'));
+                }
+              }
             });
-            
-            $(this).closest("form").submit();
         });
     });//document ready func
 </script>
