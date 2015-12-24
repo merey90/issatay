@@ -1,48 +1,30 @@
 <p id="notice"><%= notice %></p>
-<% if I18n.locale == :en %>
-  <p>
-    <h3><%= @press.title %></h3>
-  </p>
+<div class="press_container">
+  <% if I18n.locale == :en %>
+  <%= render :partial => "show_press", locals: {title: @press.title, body: @press.body.force_encoding("utf-8") } %>
+
+  <% elsif I18n.locale == :kz %>
+    <%= render :partial => "show_press", locals: {title: @press.title_kz, body: @press.body_kz.force_encoding("utf-8") } %>
   
-  <p>
-    <%=raw @press.body %>
-  </p>
-
-
-<% elsif I18n.locale == :kz %>
-  <p>
-    <h3><%= @press.title_kz %></h3>
-  </p>
   
-  <p>
-    <%= @press.body_kz.force_encoding("utf-8") %>
-  </p>
-
-
-<%  elsif I18n.locale == :ru %>
-  <p>
-    <h3><%= @press.title_ru %></h3>
-  </p>
-  
-  <p>
-    <%= @press.body_ru.force_encoding("utf-8") %>
-  </p>
-<% end %>
-
-<div class="clearfix"></div>
-
-<p>
-  <% @press.simple_images.each do |simage| %>
-    <div class="row">
-      <div class="col-xs-12">
-      <%= simage.title %>
-      <%= simage.description %>
-      <%= image_tag simage.picture.url if simage.picture? %>
-      </div>
-    </div>
+  <%  elsif I18n.locale == :ru %>
+   <%= render :partial => "show_press", locals: {title: @press.title_ru, body: @press.body_ru.force_encoding("utf-8") } %>
   <% end %>
-</p>
-
+  
+  <div class="clearfix"></div>
+  
+  <div class="row simple_images_container">
+    <% @press.simple_images.each do |simage| %>
+      <% if I18n.locale == :en %>
+        <%= render :partial => "simple_images/simple_image", locals: {title: simage.title, description: simage.description, url: simage.picture.url } %>
+      <% elsif I18n.locale == :kz %>
+        <%= render :partial => "simple_images/simple_image", locals: {title: simage.title_kz.blank? ? simage.title : simage.title_kz, description: simage.description_kz.blank? ? simage.description : simage.description_kz, url: simage.picture.url } %>
+      <% elsif I18n.locale == :ru %>
+        <%= render :partial => "simple_images/simple_image", locals: {title: simage.title_ru.blank? ? simage.title : simage.title_ru, description: simage.description_ru.blank? ? simage.description : simage.description_ru, url: simage.picture.url } %>
+      <% end %>
+    <% end %>
+  </div>
+</div>
 
 <div class="clearfix"></div>
 
@@ -52,3 +34,66 @@
 <%= link_to 'Destroy', @press, method: :delete, data: { confirm: 'Are you sure?' } %> |
 <% end %>
 <%= link_to 'Back', presses_path %>
+
+<div id="simpleImageModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><i class="fa fa-close"></i></button>
+        <h4 class="modal-title">Modal Header</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <%= image_tag 'paintbrush', :class => "col-xs-12 modal-picture" %>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 modal-description">
+            
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <% @press.simple_images.each do |simage| %>
+          <%= image_tag simage.picture.url, :class => "col-xs-3" %>
+        <% end %>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script type="text/javascript">
+  $(function(){
+    $(".simple_images_container").on("click", ".simple_image_block", function(){
+      var title = $(this).find(".simage_title").text();
+      var description = $(this).find(".simage_description").text();
+      var src = $(this).find(".simage_picture img").prop('src');
+      $("#simpleImageModal .modal-title").text(title);
+      $("#simpleImageModal .modal-description").text(description);
+      $("#simpleImageModal .modal-picture").prop("src", src);
+      $("#simpleImageModal").modal("show");
+    });
+    
+    $('.simple_images_container .simple_image_block .simage_picture img').one('load',function(){
+      var width = $(this).closest(".simple_image_block").width();
+      var height = $(this).closest(".simple_image_block").height();
+      var ratio = width/height;
+      var w =$(this).width();
+      var h =$(this).height();
+      var img_r = w/h;
+      if(img_r >= ratio){
+        $(this).css("height", height);
+      }
+      else{
+        $(this).css("width", width);
+      }
+      
+    })
+      .filter(function(){
+         return this.complete;
+    })
+    .load();
+  });//ready function
+</script>

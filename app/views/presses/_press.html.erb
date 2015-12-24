@@ -1,20 +1,47 @@
 <div class="row press_block">
     <div class="col-xs-3 col-sm-1">
       <% if press.simple_images.any? %>
-        <%= link_to (image_tag press.simple_images.first.picture.url, :class => "press_picture"), press, :title => "Details..." %>
+        <%= link_to (image_tag press.simple_images.first.picture.url, :class => "press_picture"), press, :title => t("details") %>
       <% elsif %>
-        <%= link_to (image_tag 'paintbrush', :class => "press_picture"), press, :title => "Details..." %>
+        <%= link_to (image_tag 'paintbrush', :class => "press_picture"), press, :title => t("details") %>
       <% end %>
     </div>
     <div class="col-xs-9 col-sm-11">
-      <div class="row">
-        <%= link_to press.title, press %>
-      </div>
-      <div class="row">
-        <%= press.short_body %>
-      </div>
-      <div class="row">
-        <small>Created on: <%= press.created_at %></small>
-      </div>
+      <% if I18n.locale == :en %>
+        <div class="row">
+          <%= link_to press.title, press %>
+        </div>
+        <div class="row">
+          <%= press.short_body %>
+        </div>
+        <div class="row">
+          <small><%= t 'publish_date' %>: <%= l press.created_at, :format => :long %></small>
+        </div>
+        
+        
+      <% elsif I18n.locale == :kz %>
+        <div class="row">
+          <%= link_to press.title_kz.blank? ? press.title : press.title_kz , press %>
+        </div>
+        <div class="row">
+          <%= press.short_body_kz.blank? ? press.short_body : press.short_body_kz  %>
+        </div>
+        <div class="row">
+          <small><%= t 'publish_date' %>: <%= l press.created_at, :format => :long %></small>
+        </div>
+        
+        
+      <% elsif I18n.locale == :ru %>
+        <div class="row">
+          <%= link_to press.title_ru.blank? ? press.title : press.title_ru, press %>
+        </div>
+        <div class="row">
+          <%= press.short_body_ru.blank? ? press.short_body : press.short_body_ru  %>
+        </div>
+        <div class="row">
+          <small><%= t 'publish_date' %>: <%= l press.created_at, :format => :long %></small>
+        </div>
+      <% end %>
+      
     </div>
 </div>

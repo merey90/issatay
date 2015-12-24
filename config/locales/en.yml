@@ -12,6 +12,9 @@ en:
  news:   'News'
  biography:  'Biography'
  contacts:   'Contacts'
+ #global
+ details: 'Details...'
+ publish_date: 'Published on'
  #homepage
  welcome:    'Welcome!'
  to_art_gallery_by_the_name_of:  "To art gallery by the name of"

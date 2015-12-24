@@ -12,6 +12,9 @@ ru:
  news:   "Новости"
  biography:  "Биография"
  contacts:   "Контакты"
+ #global
+ details: 'Подробно...'
+ publish_date: 'Опубликованно'
  #homepage
  welcome:    "Добро пожаловать!"
  to_art_gallery_by_the_name_of:  "В галерею искусcтв имени"

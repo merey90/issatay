@@ -90,3 +90,15 @@
         }
     }
 }
+
+.press_container{
+    background-color: white;
+    border: 1px solid #ccc;
+    -webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
+    border-radius: 7px;
+    padding: 15px;
+    .press_body{
+        margin-bottom: 20px;
+    }
+}

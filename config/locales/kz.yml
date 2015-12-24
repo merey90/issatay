@@ -8,10 +8,13 @@ kz:
  #links
  main:   "Басты бет"
  gallery:    "Галерея"
- press:  "Баспас0з"
- news:   "Жаналыктар"
- biography:  "өмірбаян"
- contacts:   "байланыс"
+ press:  "Баспасөз"
+ news:   "Жаңалықтар"
+ biography:  "Өмірбаян"
+ contacts:   "Байланыс"
+ #global
+ details: 'Толық...'
+ publish_date: 'жариялған күні'
  #homepage
  welcome:    "Кош келдиниз!"
  to_art_gallery_by_the_name_of:  "В галерею искусcтв имени"
