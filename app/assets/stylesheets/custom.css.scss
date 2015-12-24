@@ -58,15 +58,15 @@ textarea {
     // overflow: auto;
     // padding-left: 15px;
     // padding-right: 15px;
-    padding-bottom: 211px;
+    padding-bottom: 60px;
   }  
 }
 
 #footerContainer{
   background-color: #999;
   position: relative;
-  margin-top: -211px; /* negative value of footer height */
-  height: 211px;
+  margin-top: -60px; /* negative value of footer height */
+  height: 60px;
   clear:both;
   padding-top:20px;
 }
@@ -89,6 +89,10 @@ textarea {
   right: 0;
   bottom: 0;
   background: rgba(223, 223, 223, 0.6);
+}
+
+.pagination{
+  margin:0;
 }
 
 /* typography */
@@ -257,6 +261,7 @@ footer {
 /* miscellaneous */
 
 .debug_dump {
+  display: none;
   clear: both;
   float: left;
   width: 100%;

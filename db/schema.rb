@@ -13,29 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20151210044059) do
 
-  create_table "paragraphs", force: :cascade do |t|
-    t.string   "title"
-    t.string   "title_kz"
-    t.string   "title_ru"
-    t.binary   "body"
-    t.binary   "body_kz"
-    t.binary   "body_ru"
-    t.string   "image"
-    t.integer  "paragraphable_id"
-    t.string   "paragraphable_type"
-    t.datetime "deleted_at"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
-  end
-
-  add_index "paragraphs", ["body"], name: "index_paragraphs_on_body"
-  add_index "paragraphs", ["body_kz"], name: "index_paragraphs_on_body_kz"
-  add_index "paragraphs", ["body_ru"], name: "index_paragraphs_on_body_ru"
-  add_index "paragraphs", ["paragraphable_type", "paragraphable_id"], name: "index_paragraphs_on_paragraphable_type_and_paragraphable_id"
-  add_index "paragraphs", ["title"], name: "index_paragraphs_on_title"
-  add_index "paragraphs", ["title_kz"], name: "index_paragraphs_on_title_kz"
-  add_index "paragraphs", ["title_ru"], name: "index_paragraphs_on_title_ru"
-
   create_table "presses", force: :cascade do |t|
     t.string   "title"
     t.string   "title_kz"
@@ -47,7 +24,6 @@ ActiveRecord::Schema.define(version: 20151210044059) do
     t.text     "short_body_kz"
     t.text     "short_body_ru"
     t.string   "url"
-    t.text     "image"
     t.datetime "deleted_at"
     t.integer  "user_id"
     t.datetime "created_at",    null: false

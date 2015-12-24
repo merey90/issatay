@@ -1,66 +1,37 @@
 <p id="notice"><%= notice %></p>
 <% if I18n.locale == :en %>
-<p>
-  <strong>Title:</strong>
-  <%= @press.title %>
-</p>
-
-<p>
-  <strong>Short_body:</strong>
-  <%= @press.short_body %>
-</p>
-
-<p>
-  <strong>Body:</strong>
-  <%=raw @press.body %>
-</p>
-
-
-
+  <p>
+    <h3><%= @press.title %></h3>
+  </p>
+  
+  <p>
+    <%=raw @press.body %>
+  </p>
 
 
 <% elsif I18n.locale == :kz %>
-<p>
-  <strong>Title:</strong>
-  <%= @press.title_kz %>
-</p>
-
-<p>
-  <strong>Short_body:</strong>
-  <%= @press.short_body_kz %>
-</p>
-
-<p>
-  <strong>Body:</strong>
-  <%= @press.body_kz.force_encoding("utf-8") %>
-</p>
-
-
-
-
+  <p>
+    <h3><%= @press.title_kz %></h3>
+  </p>
+  
+  <p>
+    <%= @press.body_kz.force_encoding("utf-8") %>
+  </p>
 
 
 <%  elsif I18n.locale == :ru %>
-<p>
-  <strong>Title:</strong>
-  <%= @press.title_ru %>
-</p>
-
-<p>
-  <strong>Short_body:</strong>
-  <%= @press.short_body_ru %>
-</p>
-
-<p>
-  <strong>Body:</strong>
-  <%= @press.body_ru.force_encoding("utf-8") %>
-</p>
+  <p>
+    <h3><%= @press.title_ru %></h3>
+  </p>
+  
+  <p>
+    <%= @press.body_ru.force_encoding("utf-8") %>
+  </p>
 <% end %>
 
 <div class="clearfix"></div>
 
 <p>
-  <strong>Images:</strong>
   <% @press.simple_images.each do |simage| %>
     <div class="row">
       <div class="col-xs-12">

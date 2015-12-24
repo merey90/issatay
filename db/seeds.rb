@@ -16,9 +16,29 @@ User.create!(name:  "Merey Zholdas",
 #                 activated_at: Time.zone.now)
 # end
 
-# users = User.order(:created_at).take(6)
+user = User.first
 
-# 50.times do
-#   content = Faker::Lorem.sentence(5)
-#   users.each { |user| user.microposts.create!(content: content) }
-# end
+50.times do
+    title = Faker::Lorem.sentence(5)
+    title_kz = Faker::Lorem.sentence(5)
+    title_ru = Faker::Lorem.sentence(5)
+    
+    short_body = Faker::Lorem.paragraph(5)
+    short_body_kz = Faker::Lorem.paragraph(5)
+    short_body_ru = Faker::Lorem.paragraph(5)
+    
+    body = Faker::Lorem.paragraph(20)
+    body_kz = Faker::Lorem.paragraph(20)
+    body_ru = Faker::Lorem.paragraph(20)
+    
+  
+    user.presses.create!(   title: title,
+                            title_kz: title_kz,
+                            title_ru: title_ru,
+                            short_body: short_body,
+                            short_body_kz: short_body_kz,
+                            short_body_ru: short_body_ru,
+                            body: body,
+                            body_kz: body_kz,
+                            body_ru: body_ru,)
+end

@@ -4,13 +4,11 @@ class PressesController < ApplicationController
   before_action :set_press, only: [:show, :edit, :update, :destroy]
 
   # GET /presses
-  # GET /presses.json
   def index
-    @presses = Press.all
+    @presses = Press.paginate(page: params[:page], :per_page => 10)
   end
 
   # GET /presses/1
-  # GET /presses/1.json
   def show
   end
 

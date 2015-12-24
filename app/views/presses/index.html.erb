@@ -1,29 +1,11 @@
 <% provide(:title, t("press")) %>
 <p id="notice"><%= notice %></p>
 <% if logged_in? %>
-<%= link_to 'New Press', new_press_path, :class => "btn btn-success form-control" %>
+<%= link_to ('New Press <i class="fa fa-plus"></i>').html_safe, new_press_path, :class => "btn btn-success form-control" %>
 <% end %>
 
   <div class="row presses_container">
-    <% @presses.each do |press| %>
-      <div class="row press_block">
-        <div class="col-xs-1">
-          <% if press.simple_images.any? %>
-            <%= image_tag press.simple_images.first.picture.url, :class => "press_picture", :title => "Details..." %>
-          <% elsif %>
-            <%= image_tag 'paintbrush', :class => "press_picture", :title => "Details..." %>
-          <% end %>
-        </div>
-        <div class="col-xs-11">
-          <div class="row">
-            <%= link_to press.title, press %>
-          </div>
-          <div class="row">
-            <%= press.short_body %>
-          </div>
-        </div>
-      </div>
-    <% end %>
+    <%= render @presses %>
   </div>
-
+<%= will_paginate %>
 <br>
