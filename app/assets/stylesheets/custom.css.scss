@@ -329,10 +329,16 @@ input {
 
 // simple images
 .simple_images_container{
+  background-color: #222;
+  padding-top: 15px;
+  margin-left: 0;
+  border-radius: 7px;
+  margin-right: 0;
   .simple_image_block{
     position: relative;
     overflow: hidden;
     cursor: pointer;
+    margin-bottom: 15px;
     .wrapper{
       height: 150px;
       -webkit-border-radius: 4px;
@@ -381,6 +387,101 @@ input {
         bottom:0px;
         background: rgba(0,0,0, 0.6);
         color: white;
+      }
+    }
+  }
+}
+
+#simpleImageModal{
+  .modal-body{
+    .modal_image{
+      position: relative;
+      .modal_controller{
+        opacity:0;
+        cursor: pointer;
+        -webkit-transition: opacity 1s ease 0s;
+        -moz-transition: opacity 1s ease 0s;
+        -ms-transition: opacity 1s ease 0s;
+        -o-transition: opacity 1s ease 0s;
+        transition: opacity 1s ease 0s;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        z-index: 1;
+        .bg_image{
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 50%;
+          bottom: 0;
+          width:100%;
+          background-repeat: no-repeat;
+          background-size: 20% 80%;
+        }
+        &.left{
+          left: 15px;
+          right: 50%;
+          background: -moz-linear-gradient(left,  rgba(0,0,0,0.65) 0%, rgba(0,0,0,0) 100%);
+          background: -webkit-linear-gradient(left,  rgba(0,0,0,0.65) 0%,rgba(0,0,0,0) 100%);
+          background: linear-gradient(to right,  rgba(0,0,0,0.65) 0%,rgba(0,0,0,0) 100%);
+          .bg_image{
+            background-image: image-url("arrow_left");
+            background-position: 20px 50%;
+          }
+        }
+        &.right{
+          left: 50%;
+          right: 15px;
+          background: -moz-linear-gradient(right,  rgba(0,0,0,0.65) 0%, rgba(0,0,0,0) 100%);
+          background: -webkit-linear-gradient(right,  rgba(0,0,0,0.65) 0%,rgba(0,0,0,0) 100%);
+          background: linear-gradient(to left,  rgba(0,0,0,0.65) 0%,rgba(0,0,0,0) 100%);
+          .bg_image{
+            background-image: image-url("arrow_right");
+            background-position: calc(100% - 20px) 50%;
+          }
+        }
+        &:hover{
+          opacity:1;
+        }
+      }
+    }
+  }
+  .modal-footer{
+    padding-left: 0px;
+    padding-right: 0px;
+    margin-left: 15px;
+    margin-right: 15px;
+    overflow-x: auto;
+    .modal_container{
+      display: inline-flex;
+      -webkit-overflow-scrolling: touch;
+      .simple_image_block{
+        cursor: pointer;
+        padding-left: 0px;
+        .wrapper{
+          height: 120px;
+          width: 120px;
+          overflow: hidden;
+          .simage_info{
+            display: none;
+          }
+          .simage_picture{
+            
+            img{
+              
+            }
+          }
+        }
+        
+        &.active{
+          .wrapper{
+            border-left: 3px solid black;
+            border-right: 3px solid black;
+            -webkit-border-radius: 7px;
+            -moz-border-radius: 7px;
+            border-radius: 7px;
+          }
+        }
       }
     }
   }
