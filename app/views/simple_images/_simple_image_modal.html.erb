@@ -3,13 +3,12 @@
 
     <!-- Modal content-->
     <div class="modal-content">
-        <img src class="scale_animation"/>
+      <div class="overlay o_modal_pic"></div>
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal"><i class="fa fa-close"></i></button>
         <h4 class="modal-title">Modal Header</h4>
       </div>
       <div class="modal-body">
-          
         <div class="row modal_image">
             <div class="modal_controller left">
                 <div class="bg_image"></div>
@@ -19,24 +18,11 @@
             </div>
             <%= image_tag 'paintbrush', :class => "col-xs-12 modal-picture" %>
         </div>
-        <div class="row">
+      </div>
+        <div class="modal-footer">
           <div class="col-xs-12 modal-description">
             
           </div>
-        </div>
-      </div>
-        <div class="modal-footer">
-            <div class="modal_container">
-                <% simple_images.each do |simage| %>
-                  <% if I18n.locale == :en %>
-                    <%= render :partial => "simple_images/simple_image", locals: {id: simage.id, title: simage.title, description: simage.description, url: simage.picture.url } %>
-                  <% elsif I18n.locale == :kz %>
-                    <%= render :partial => "simple_images/simple_image", locals: {id: simage.id, title: simage.title_kz.blank? ? simage.title : simage.title_kz, description: simage.description_kz.blank? ? simage.description : simage.description_kz, url: simage.picture.url } %>
-                  <% elsif I18n.locale == :ru %>
-                    <%= render :partial => "simple_images/simple_image", locals: {id: simage.id, title: simage.title_ru.blank? ? simage.title : simage.title_ru, description: simage.description_ru.blank? ? simage.description : simage.description_ru, url: simage.picture.url } %>
-                  <% end %>
-                <% end %>
-            </div>
         </div>
     </div>
 
