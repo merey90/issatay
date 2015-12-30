@@ -1,0 +1,81 @@
+// Place all the styles related to the Albums controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.albums_container{
+    margin-top: 15px;
+    margin-left: 0px;
+    margin-right: 0px;
+    padding: 15px;
+    .album_block{
+        -webkit-transition: all 0.5s ease-in-out;
+        -moz-transition: all 0.5s ease-in-out;
+        -ms-transition: all 0.5s ease-in-out;
+        -o-transition: all 0.5s ease-in-out;
+        transition: all 0.5s ease-in-out;
+        padding: 0px;
+        position: relative;
+        cursor: pointer;
+        height: 15vw;
+        overflow: hidden;
+        border: 1px solid black;
+        .overlay{
+            -webkit-transition: all 0.5s ease-in-out;
+            -moz-transition: all 0.5s ease-in-out;
+            -ms-transition: all 0.5s ease-in-out;
+            -o-transition: all 0.5s ease-in-out;
+            transition: all 0.5s ease-in-out;
+            background: rgba(0,0,0,0.8);
+            -webkit-border-radius: 0px;
+            -moz-border-radius: 0px;
+            border-radius: 0px;
+            opacity: 1;
+            display: block;
+        }
+        .wrapper{
+            margin-left: 0px;
+            margin-right: 0px;
+            min-height: 100%;
+            -webkit-transition: all 0.5s ease-in-out;
+            -moz-transition: all 0.5s ease-in-out;
+            -ms-transition: all 0.5s ease-in-out;
+            -o-transition: all 0.5s ease-in-out;
+            transition: all 0.5s ease-in-out;
+            width: 200%;
+            background-color: #111111;
+            color:white;
+            .album_preview{
+                width: 50%;
+                margin-left: 0px;
+                margin-right: 0px;
+                float: left;
+                height: 100%;
+                .quarter{
+                    float: left;
+                    width: 50%;
+                    overflow: hidden;
+                }
+                img{
+                    min-width: 100%;
+                }
+            }
+            .album_info{
+                width: 50%;
+                float: left;
+                padding: 15px;
+                .title{
+                    font-weight: bold;
+                    width: 100%;
+                }
+                .description{
+                    width: 100%;
+                }
+            }
+        }
+        
+        &:hover{
+            .overlay{
+                opacity: 0;
+            }
+        }
+    }
+}

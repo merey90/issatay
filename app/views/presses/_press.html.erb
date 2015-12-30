@@ -1,7 +1,7 @@
 <div class="row press_block">
     <div class="col-xs-3 col-sm-1">
       <% if press.simple_images.any? %>
-        <%= link_to (image_tag press.simple_images.first.picture.url, :class => "press_picture"), press, :title => t("details") %>
+        <%= link_to (image_tag press.simple_images.last.picture.url, :class => "press_picture"), press, :title => t("details") %>
       <% elsif %>
         <%= link_to (image_tag 'paintbrush', :class => "press_picture"), press, :title => t("details") %>
       <% end %>

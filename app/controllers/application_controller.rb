@@ -26,4 +26,12 @@ class ApplicationController < ActionController::Base
         redirect_to login_url
       end
     end
+    
+    def admin_user
+      unless is_admin?
+        store_location
+        flash[:danger] = "Youa are not an admin user."
+        redirect_to login_url
+      end
+    end
 end

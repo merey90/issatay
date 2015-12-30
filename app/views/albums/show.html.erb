@@ -1,0 +1,138 @@
+<p id="notice"><%= notice %></p>
+<div class="press_container">
+  <p>
+    <strong>Title:</strong>
+    <%= @album.title %>
+  </p>
+  
+  <p>
+    <strong>Description:</strong>
+    <%= @album.description %>
+  </p>
+</div>
+
+<% if logged_in? %>
+  <%= form_for(@album, :html => { multipart: true, :class => "albums_form",:role=> "form"}) do |f| %>
+    <div class="row dropzone">
+      
+      <div class="form-group add_image_btn">
+          <a href="#" id="add_image" class="btn btn-warning form-control">Добавить картинку <i class="fa fa-plus"></i></a>
+      </div>
+      
+      <%= f.fields_for :simple_images do |simple_images_form| %>
+        <div class="simple_images_form col-xs-6">
+          <span class="hidden"><%= simple_images_form.check_box :_destroy, :class => "remove_simage_cbx" %></span>
+          <a href="#" class="btn btn-danger remove_simage" title="Удалить картинку">X</a>
+          <div class="overlay delete"></div>
+          <div class="row simple_image_block">
+            <div class="col-xs-4 previews">
+              <span class="hidden"><%= simple_images_form.file_field :picture, :class => "simage_input", accept: 'image/jpeg,image/gif,image/png' %></span>
+              <% if simple_images_form.object.picture? %>
+                <%= image_tag simple_images_form.object.picture.url, :class => "image_preview", :title => "Изменить картинку" %>
+              <% elsif %>
+                <%= image_tag 'paintbrush', :class => "image_preview", :title => "Изменить картинку" %>
+              <% end %>
+            </div>
+            <div class="col-xs-8 titles">
+              <div class="form-group">
+                <%= simple_images_form.text_field :title, :class => "form-control", :placeholder => "Title" %>
+              </div>
+              <div class="form-group">
+                <%= simple_images_form.text_field :title_kz, :class => "form-control", :placeholder => "Атау" %>
+              </div>
+              <div class="form-group">
+                <%= simple_images_form.text_field :title_ru, :class => "form-control", :placeholder => "Название" %>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="col-xs-12 descriptions">
+              <div class="form-group">
+                <%= simple_images_form.text_area :description, :class => "form-control", :placeholder => "Description" %>
+              </div>
+              <div class="form-group">
+                <%= simple_images_form.text_area :description_kz, :class => "form-control", :placeholder => "Сипаттамасы" %>
+              </div>
+              <div class="form-group">
+                <%= simple_images_form.text_area :description_ru, :class => "form-control", :placeholder => "Описание" %>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <div class="form-group collapse form_submit">
+      <%= f.submit 'SUBMIT', :class => "form-control btn btn-success" %>
+    </div>
+  <% end %>
+
+
+  <%= link_to 'Edit', edit_album_path(@album) %> |
+  <%= link_to 'Destroy', @album, method: :delete, data: { confirm: 'Are you sure?' } %> |
+<% else %>
+  <div class="row simple_images_container">
+    <% @album.simple_images.each do |simage| %>
+      <% if I18n.locale == :en %>
+        <%= render :partial => "simple_images/simple_image", locals: {id: simage.id, title: simage.title, description: simage.description, url: simage.picture.url } %>
+      <% elsif I18n.locale == :kz %>
+        <%= render :partial => "simple_images/simple_image", locals: {id: simage.id, title: simage.title_kz.blank? ? simage.title : simage.title_kz, description: simage.description_kz.blank? ? simage.description : simage.description_kz, url: simage.picture.url } %>
+      <% elsif I18n.locale == :ru %>
+        <%= render :partial => "simple_images/simple_image", locals: {id: simage.id, title: simage.title_ru.blank? ? simage.title : simage.title_ru, description: simage.description_ru.blank? ? simage.description : simage.description_ru, url: simage.picture.url } %>
+      <% end %>
+    <% end %>
+  </div>
+  
+  <%= render :partial => "simple_images/simple_image_modal" %>
+<% end %>
+<%= link_to 'Back', albums_path %>
+
+
+
+<% if logged_in? %>
+  <script type="text/javascript">
+    $(function(){
+      
+      $('.dropzone').on('change','.simage_input', function() {
+        var size_in_megabytes = this.files[0].size/1024/1024;
+        if (size_in_megabytes > 8) {
+          alert('Maximum file size is 8MB. Please choose a smaller file.');
+        }
+        else{
+          if (typeof (FileReader) != "undefined") {
+            var image_holder = $(this).parent().parent().find(".image_preview");
+            var reader = new FileReader();
+            reader.onload = function (e) {
+              $(image_holder).attr('src', e.target.result );
+            }
+            reader.readAsDataURL(this.files[0]);
+          }
+        }
+      });
+      
+      $("#add_image").click(function(e){
+         e.preventDefault();
+         $(".form_submit").addClass("in");
+        $.ajax({
+          url: '/<%=I18n.locale%>/albums/add_simple_images',
+          success: function(data){
+            var item = $(data).html();
+            $('.dropzone').append(item);
+          },
+          error: function(data){
+            alert("Sorry, There Was An Error!");
+          }
+        });
+      });
+      
+      $(".dropzone").on("click",".image_preview", function(){
+        $(this).parent().find(".simage_input").click();
+      });
+      
+      $(".dropzone").on("click", ".remove_simage", function(e){
+        e.preventDefault();
+        $(this).closest(".simple_images_form").find(".remove_simage_cbx").trigger('click');
+        $(this).closest(".simple_images_form").find(".overlay").slideToggle();
+      });
+    });
+    
+  </script>
+<% end %>

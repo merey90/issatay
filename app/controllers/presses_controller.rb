@@ -1,7 +1,7 @@
 #encoding: utf-8
 class PressesController < ApplicationController
-  before_action :logged_in_user, only: [:create, :destroy, :edit]
   before_action :set_press, only: [:show, :edit, :update, :destroy]
+  before_action :admin_user, only: [:create, :destroy, :edit]
 
   # GET /presses
   def index
@@ -20,11 +20,11 @@ class PressesController < ApplicationController
 
   # GET /presses/1/edit
   def edit
-    # @press.simple_images.build
+    @press.simple_images.build
   end
   
   def add_simple_images
-    if @press == nil || @press == ""
+    if @press.blank?
      @press = current_user.presses.new
     end
     
@@ -36,27 +36,22 @@ class PressesController < ApplicationController
   def create
     @press = current_user.presses.new(press_params)
 
-      if @press.save
-        flash[:success] = "Press created!"
-        redirect_to @press
-      else
-        @feed_items = []
-        render 'presses/new'
-      end
-
+    if @press.save
+      flash[:success] = "Press created!"
+      redirect_to @press
+    else
+      render :new
+    end
   end
 
   # PATCH/PUT /presses/1
   def update
-
-      if @press.update(press_params)
-        flash[:success] = "Press updated!"
-        redirect_to @press
-      else
-        @feed_items = []
-        render 'presses/%{@press.id}/edit'
-      end
-
+    if @press.update(press_params)
+      flash[:success] = "Press updated!"
+      redirect_to @press
+    else
+      render 'presses/%{@press.id}/edit'
+    end
   end
 
   # DELETE /presses/1

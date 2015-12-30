@@ -1,0 +1,41 @@
+<%= form_for(@album, :html => { multipart: true, :class => "albums_form",:role=> "form"}) do |f| %>
+  <% if @album.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@album.errors.count, "error") %> prohibited this album from being saved:</h2>
+
+      <ul>
+      <% @album.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.text_field :title, :placeholder => "Title", :class => "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.text_field :title_kz, :placeholder => "Аты", :class => "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.text_field :title_ru, :placeholder => "Название", :class => "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.text_area :description, :placeholder => "Description", :class => "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.text_area :description_kz, :placeholder => "Сипаттамасы", :class => "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.text_area :description_ru, :placeholder => "Описание", :class => "form-control" %>
+  </div>
+  
+  <div class="form-group">
+    <%= f.file_field :picture, :class => "simage_input", accept: 'image/jpeg,image/gif,image/png' %>
+  </div>
+  
+  <div class="form-group">
+    <%= f.submit 'SUBMIT', :class => "form-control btn btn-success" %>
+  </div>
+  
+<% end %>

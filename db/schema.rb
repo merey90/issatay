@@ -11,7 +11,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151210044059) do
+ActiveRecord::Schema.define(version: 20151228043945) do
+
+  create_table "albums", force: :cascade do |t|
+    t.string   "picture"
+    t.string   "title"
+    t.string   "title_kz"
+    t.string   "title_ru"
+    t.text     "description"
+    t.text     "description_kz"
+    t.text     "description_ru"
+    t.integer  "user_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "albums", ["description"], name: "index_albums_on_description"
+  add_index "albums", ["description_kz"], name: "index_albums_on_description_kz"
+  add_index "albums", ["description_ru"], name: "index_albums_on_description_ru"
+  add_index "albums", ["title"], name: "index_albums_on_title"
+  add_index "albums", ["title_kz"], name: "index_albums_on_title_kz"
+  add_index "albums", ["title_ru"], name: "index_albums_on_title_ru"
+  add_index "albums", ["user_id"], name: "index_albums_on_user_id"
 
   create_table "presses", force: :cascade do |t|
     t.string   "title"

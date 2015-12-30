@@ -1,0 +1,119 @@
+<% provide(:title, t("gallery")) %>
+<p id="notice"><%= notice %></p>
+<% if logged_in? %>
+<%= link_to ('New Album <i class="fa fa-plus"></i>').html_safe, new_album_path, :class => "btn btn-success form-control" %>
+<% end %>
+  
+  <div class="row albums_container">
+    <% @albums.each_with_index do |album, index| %>
+      
+      <div class="album_block col-xs-3" data-id="<%= album.id %>" data-index="<%= index %>">
+        <div class="overlay"></div>
+        
+      <%= link_to 'show', album, :class => "hidden album_link" %>
+        <div class="row wrapper">
+          <div class="row album_preview">
+            <% if album.picture? %>
+              <%= image_tag album.picture.url, :class => "" %>
+            <% elsif album.simple_images.any? %>
+              <% album.simple_images.first(4).each do |quarter| %>
+              <div class="quarter">
+                <%= image_tag quarter.picture.url, :class => "" %>
+              </div>
+              <% end %>
+            <% else %>
+              <%= image_tag "paintbrush", :class => "" %>
+            <% end %>
+          </div>
+          <div class="album_info">
+            <div class="title">
+              <h4>
+              <%=
+                if I18n.locale == :en
+                  album.title
+                elsif I18n.locale == :kz
+                  album.title_kz.blank? ? album.title : album.title_kz
+                elsif I18n.locale == :ru
+                  album.title_ru.blank? ? album.title : album.title_ru
+                end
+              %></h4>
+            </div>
+            <div class="description">
+              <%=
+                if I18n.locale == :en
+                  album.description
+                elsif I18n.locale == :kz
+                  album.description_kz.blank? ? album.description : album.description_kz
+                elsif I18n.locale == :ru
+                  album.description_ru.blank? ? album.description : album.description_ru
+                end
+              %>
+            </div>
+          </div>
+        </div>
+        
+        
+      </div>
+    <% end %>
+  </div>
+  
+  <script type="text/javascript">
+    $(function(){
+      var album_width = $(".album_block").eq(0).width();
+      $(".album_block").css("height", $(".album_block").width());
+      $(".quarter").css("height", $(".quarter").width());
+      
+      
+      $('.albums_container .album_block .album_preview img').one('load',function(){
+        var width = $(this).parent().width();
+        var height = $(this).parent().height();
+        var ratio = width/height;
+        var w =$(this).width();
+        var h =$(this).height();
+        var img_r = w/h;
+        if(img_r >= ratio){
+          $(this).css("height", height);
+        }
+        else{
+          $(this).css("width", width);
+        }
+        
+      })
+        .filter(function(){
+          return this.complete;
+      })
+      .load();
+      
+      $(".album_block").on("click", function(){
+        location.href = $(this).find(".album_link").prop("href");
+      });
+      
+      $(".album_block").hover(function(){
+        $(this).css("z-index", "1001");
+        if( $(this).attr("data-index")%4 == 0 ){
+          if($(this).next().length > 0){
+            $(this).next().css("margin-left", "-"+album_width+"px");
+          }
+        }
+        else{
+          $(this).css("margin-left", "-"+album_width+"px");
+        }
+        $(this).width(album_width*2);
+        $(this).find(".wrapper").css("width", "100%");
+      })
+      $(".album_block").mouseout(function(){
+        $(this).css("z-index", "inherit");
+        if( $(this).attr("data-index")%4 == 0 ){
+          if($(this).next().length > 0){
+            $(this).next().css("margin-left", "0px");
+          }
+        }
+        else{
+          $(this).css("margin-left", "0px");
+        }
+        
+        $(this).width(album_width);
+        $(this).find(".wrapper").css("width", "200%");
+      });
+    });
+  </script>

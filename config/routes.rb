@@ -16,7 +16,6 @@ Rails.application.routes.draw do
     get 'help'    => 'static_pages#help'
     get 'about'   => 'static_pages#about'
     get 'contact' => 'static_pages#contact'
-    get 'gallery' => 'static_pages#gallery'
     # get 'signup'  => 'users#new'
   
     get    'login'   => 'sessions#new'
@@ -26,9 +25,14 @@ Rails.application.routes.draw do
     resources :users,               only: [:index, :show, :edit, :update, :destroy]
     resources :password_resets,     only: [:new, :create, :edit, :update]
     resources :presses do
-       collection do
-           get :add_simple_images
-       end
+      collection do
+          get :add_simple_images
+      end
+    end
+    resources :albums do
+      collection do
+          get :add_simple_images
+      end
     end
   end
   
