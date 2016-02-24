@@ -34,6 +34,7 @@ Rails.application.routes.draw do
           get :add_simple_images
       end
     end
+    resources :carousels
   end
   
   root to: redirect("/#{I18n.default_locale}"), as: :redirected_root

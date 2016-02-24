@@ -9,6 +9,8 @@ class CreateSimpleImages < ActiveRecord::Migration
       t.text :description_kz, index: true
       t.text :description_ru, index: true
       
+      t.datetime :deleted_at, index: true
+      
       t.references :imageable, polymorphic:true, index: true
 
       t.timestamps null: false

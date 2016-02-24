@@ -62,7 +62,7 @@ class AlbumsController < ApplicationController
   private
   
     def flash_error_message(arg)
-      "Форма содержит #{arg.errors.count} ошибок: #{arg.errors.full_messages.join(', ')}"       
+      "Форма содержит #{arg.errors.count} ошибок: #{arg.errors.full_messages.join(', ')}"
     end
     
     # Use callbacks to share common setup or constraints between actions.

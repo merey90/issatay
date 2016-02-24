@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151228043945) do
+ActiveRecord::Schema.define(version: 20160115113224) do
 
   create_table "albums", force: :cascade do |t|
     t.string   "picture"
@@ -21,11 +21,13 @@ ActiveRecord::Schema.define(version: 20151228043945) do
     t.text     "description"
     t.text     "description_kz"
     t.text     "description_ru"
+    t.datetime "deleted_at"
     t.integer  "user_id"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
   end
 
+  add_index "albums", ["deleted_at"], name: "index_albums_on_deleted_at"
   add_index "albums", ["description"], name: "index_albums_on_description"
   add_index "albums", ["description_kz"], name: "index_albums_on_description_kz"
   add_index "albums", ["description_ru"], name: "index_albums_on_description_ru"
@@ -33,6 +35,30 @@ ActiveRecord::Schema.define(version: 20151228043945) do
   add_index "albums", ["title_kz"], name: "index_albums_on_title_kz"
   add_index "albums", ["title_ru"], name: "index_albums_on_title_ru"
   add_index "albums", ["user_id"], name: "index_albums_on_user_id"
+
+  create_table "carousels", force: :cascade do |t|
+    t.string   "title"
+    t.string   "title_kz"
+    t.string   "title_ru"
+    t.text     "description"
+    t.text     "description_kz"
+    t.text     "description_ru"
+    t.text     "url"
+    t.datetime "deleted_at"
+    t.integer  "user_id"
+    t.string   "picture"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "carousels", ["deleted_at"], name: "index_carousels_on_deleted_at"
+  add_index "carousels", ["description"], name: "index_carousels_on_description"
+  add_index "carousels", ["description_kz"], name: "index_carousels_on_description_kz"
+  add_index "carousels", ["description_ru"], name: "index_carousels_on_description_ru"
+  add_index "carousels", ["title"], name: "index_carousels_on_title"
+  add_index "carousels", ["title_kz"], name: "index_carousels_on_title_kz"
+  add_index "carousels", ["title_ru"], name: "index_carousels_on_title_ru"
+  add_index "carousels", ["user_id"], name: "index_carousels_on_user_id"
 
   create_table "presses", force: :cascade do |t|
     t.string   "title"
@@ -54,6 +80,7 @@ ActiveRecord::Schema.define(version: 20151228043945) do
   add_index "presses", ["body"], name: "index_presses_on_body"
   add_index "presses", ["body_kz"], name: "index_presses_on_body_kz"
   add_index "presses", ["body_ru"], name: "index_presses_on_body_ru"
+  add_index "presses", ["deleted_at"], name: "index_presses_on_deleted_at"
   add_index "presses", ["short_body"], name: "index_presses_on_short_body"
   add_index "presses", ["short_body_kz"], name: "index_presses_on_short_body_kz"
   add_index "presses", ["short_body_ru"], name: "index_presses_on_short_body_ru"
@@ -70,12 +97,14 @@ ActiveRecord::Schema.define(version: 20151228043945) do
     t.text     "description"
     t.text     "description_kz"
     t.text     "description_ru"
+    t.datetime "deleted_at"
     t.integer  "imageable_id"
     t.string   "imageable_type"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
   end
 
+  add_index "simple_images", ["deleted_at"], name: "index_simple_images_on_deleted_at"
   add_index "simple_images", ["description"], name: "index_simple_images_on_description"
   add_index "simple_images", ["description_kz"], name: "index_simple_images_on_description_kz"
   add_index "simple_images", ["description_ru"], name: "index_simple_images_on_description_ru"
