@@ -24,7 +24,10 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <%= link_to image_tag("logo.png", :height => 40), root_path, id: "logo" %>
+      
+      <%= link_to root_path, id: "logo" do %>
+        <div class="main_logo"></div>
+      <% end %>
     </div>
 
     <div class="collapse navbar-collapse" id="super_navbar">

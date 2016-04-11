@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160411054241) do
+ActiveRecord::Schema.define(version: 20160411112750) do
 
   create_table "albums", force: :cascade do |t|
     t.string   "picture"
@@ -141,6 +141,24 @@ ActiveRecord::Schema.define(version: 20160411054241) do
   add_index "simple_images", ["title"], name: "index_simple_images_on_title"
   add_index "simple_images", ["title_kz"], name: "index_simple_images_on_title_kz"
   add_index "simple_images", ["title_ru"], name: "index_simple_images_on_title_ru"
+
+  create_table "static_fields", force: :cascade do |t|
+    t.binary   "biography"
+    t.binary   "biography_kz"
+    t.binary   "biography_ru"
+    t.binary   "contacts"
+    t.binary   "contacts_kz"
+    t.binary   "contacts_ru"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "static_fields", ["biography"], name: "index_static_fields_on_biography"
+  add_index "static_fields", ["biography_kz"], name: "index_static_fields_on_biography_kz"
+  add_index "static_fields", ["biography_ru"], name: "index_static_fields_on_biography_ru"
+  add_index "static_fields", ["contacts"], name: "index_static_fields_on_contacts"
+  add_index "static_fields", ["contacts_kz"], name: "index_static_fields_on_contacts_kz"
+  add_index "static_fields", ["contacts_ru"], name: "index_static_fields_on_contacts_ru"
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
