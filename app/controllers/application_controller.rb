@@ -23,15 +23,15 @@ class ApplicationController < ActionController::Base
       unless logged_in?
         store_location
         flash[:danger] = "Please log in."
-        redirect_to login_url
+        redirect_to home_url
       end
     end
     
     def admin_user
       unless is_admin?
         store_location
-        flash[:danger] = "Youa are not an admin user."
-        redirect_to login_url
+        flash[:danger] = "You are not an admin user."
+        redirect_to home_url
       end
     end
 end

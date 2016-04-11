@@ -5,10 +5,6 @@
   <%= @carousel.title %>
 </p>
 
-<p>
-  <strong>:</strong>
-  <%= @carousel. %>
-</p>
 
 <p>
   <strong>Description:</strong>
@@ -16,8 +12,18 @@
 </p>
 
 <p>
-  <strong>:</strong>
-  <%= @carousel. %>
+  <strong>url:</strong>
+  <%= @carousel.url %>
+</p>
+
+<p>
+  <% if I18n.locale == :en %>
+    <%= render :partial => "simple_images/simple_image", locals: {id: @carousel.id, title: @carousel.title, description: @carousel.description, url: @carousel.picture.url } %>
+  <% elsif I18n.locale == :kz %>
+    <%= render :partial => "simple_images/simple_image", locals: {id: @carousel.id, title: @carousel.title_kz.blank? ? @carousel.title : @carousel.title_kz, description: @carousel.description_kz.blank? ? @carousel.description : @carousel.description_kz, url: @carousel.picture.url } %>
+  <% elsif I18n.locale == :ru %>
+    <%= render :partial => "simple_images/simple_image", locals: {id: @carousel.id, title: @carousel.title_ru.blank? ? @carousel.title : @carousel.title_ru, description: @carousel.description_ru.blank? ? @carousel.description : @carousel.description_ru, url: @carousel.picture.url } %>
+  <% end %>
 </p>
 
 <%= link_to 'Edit', edit_carousel_path(@carousel) %> |

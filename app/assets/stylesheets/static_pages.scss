@@ -3,8 +3,55 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 #myCarousel{
     margin: 20px 0px;
+    .carousel-inner > .item > img,
+    .carousel-inner > .item > a > img {
+        min-width: 100%;
+    }
+    .annotation{
+        position:absolute;
+        top: 20px;
+        text-align: center;
+        left: 15%;
+        right: 15%;
+        .title{
+            font-size: 25px;
+            color: white;
+            padding: 10px;
+            padding-bottom: 0px;
+            text-shadow: black 0px 0px 8px;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+            background: rgba(255, 255, 255, 0.4);
+            border-bottom: 1px solid black;
+            @media screen and (min-width: 768px){
+                font-size: 50px;
+            }
+        }
+        .description{
+            font-size: 15px;
+            border-bottom-left-radius: 8px;
+            border-bottom-right-radius: 8px;
+            background: rgba(255,255,255, 0.4);
+            padding: 5px;
+            text-shadow: white 0px 0px 8px;
+            @media screen and (min-width: 768px){
+                font-size: 30px;
+                padding: 10px;
+            }
+        }
+    }
     .carousel-indicators{
         margin-bottom: 0px;
-        bottom: 0px;
+        bottom: 5px;
+        right: 20px;
+        left: initial;
+        width: initial;
+        margin-left: initial;
+    }
+    .edit_carousel_btn{
+        position: absolute;
+        right: 0px;
+        top: 0px;
+        z-index: 1;
     }
 }

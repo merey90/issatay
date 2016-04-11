@@ -5,6 +5,7 @@ class Carousel < ActiveRecord::Base
     validates :user_id, presence: true
     validates :title, presence: true
     validates :url, presence: true
+    validates :picture, presence: true
     
     validate  :picture_size
 

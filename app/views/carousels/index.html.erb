@@ -6,9 +6,11 @@
   <thead>
     <tr>
       <th>Title</th>
-      <th></th>
+      <th>Title kaz</th>
+      <th>Title rus</th>
       <th>Description</th>
-      <th></th>
+      <th>Description kaz</th>
+      <th>Description rus</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -17,9 +19,11 @@
     <% @carousels.each do |carousel| %>
       <tr>
         <td><%= carousel.title %></td>
-        <td><%= carousel. %></td>
+        <td><%= carousel.title_kz %></td>
+        <td><%= carousel.title_ru %></td>
         <td><%= carousel.description %></td>
-        <td><%= carousel. %></td>
+        <td><%= carousel.description_kz %></td>
+        <td><%= carousel.description_ru %></td>
         <td><%= link_to 'Show', carousel %></td>
         <td><%= link_to 'Edit', edit_carousel_path(carousel) %></td>
         <td><%= link_to 'Destroy', carousel, method: :delete, data: { confirm: 'Are you sure?' } %></td>

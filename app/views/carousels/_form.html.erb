@@ -11,23 +11,33 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :title %><br>
-    <%= f.text_field :title %>
+  <div class="form-group">
+    <%= f.text_field :title, :placeholder => "Title", :class => "form-control" %>
   </div>
-  <div class="field">
-    <%= f.label : %><br>
-    <%= f.text_field : %>
+  <div class="form-group">
+    <%= f.text_field :title_kz, :placeholder => "Аты", :class => "form-control" %>
   </div>
-  <div class="field">
-    <%= f.label :description %><br>
-    <%= f.text_field :description %>
+  <div class="form-group">
+    <%= f.text_field :title_ru, :placeholder => "Название", :class => "form-control" %>
   </div>
-  <div class="field">
-    <%= f.label : %><br>
-    <%= f.text_field : %>
+  <div class="form-group">
+    <%= f.text_area :description, :placeholder => "Description", :class => "form-control" %>
   </div>
-  <div class="actions">
-    <%= f.submit %>
+  <div class="form-group">
+    <%= f.text_area :description_kz, :placeholder => "Сипаттамасы", :class => "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.text_area :description_ru, :placeholder => "Описание", :class => "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.text_field :url, :placeholder => "Ссылка", :class => "form-control" %>
+  </div>
+  
+  <div class="form-group">
+    <%= f.file_field :picture, :class => "simage_input", accept: 'image/jpeg,image/gif,image/png' %>
+  </div>
+  
+  <div class="form-group">
+    <%= f.submit 'SUBMIT', :class => "form-control btn btn-success" %>
   </div>
 <% end %>

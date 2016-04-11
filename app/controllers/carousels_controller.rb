@@ -1,6 +1,6 @@
 class CarouselsController < ApplicationController
   before_action :set_carousel, only: [:show, :edit, :update, :destroy]
-  before_action :admin_user, only: [:show, :create, :destroy, :edit]
+  before_action :admin_user, only: [:show, :index, :create, :update, :destroy, :edit]
 
   # GET /carousels
   # GET /carousels.json
