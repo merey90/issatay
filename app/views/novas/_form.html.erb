@@ -1,9 +1,9 @@
-<%= form_for(@press, :html => { multipart: true, :class => "form-horizontal presses_form",:role=> "form"}) do |f| %>
-  <% if @press.errors.any? %>
+<%= form_for(@nova, :html => { multipart: true, :class => "form-horizontal novas_form",:role=> "form"}) do |f| %>
+  <% if @nova.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@press.errors.count, "error") %> prohibited this press from being saved:</h2>
+      <h2><%= pluralize(@nova.errors.count, "error") %> prohibited this news from being saved:</h2>
       <ul>
-      <% @press.errors.full_messages.each do |message| %>
+      <% @nova.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
@@ -66,7 +66,7 @@
     <div class="col-sm-10">
       <div class="row">
         <%= f.hidden_field :body, :class => "hidden_body" %>
-        <div class="form-control summernote"><%=raw @press.body %></div>
+        <div class="form-control summernote"><%=raw @nova.body %></div>
       </div>
     </div>
   </div>
@@ -76,7 +76,7 @@
       <div class="row">
         <%= f.hidden_field :body_kz, :class => "hidden_body", :value => "" %>
         <% if params[:action] == 'edit' %>
-          <div class="form-control summernote"><%=raw @press.body_kz.force_encoding('utf-8') %></div>
+          <div class="form-control summernote"><%=raw @nova.body_kz.force_encoding('utf-8') %></div>
         <% elsif params[:action] == 'new' %>
           <div class="form-control summernote"></div>
         <% end %>
@@ -89,7 +89,7 @@
       <div class="row">
         <%= f.hidden_field :body_ru, :class => "hidden_body", :value => "" %>
         <% if params[:action] == 'edit' %>
-          <div class="form-control summernote"><%=raw @press.body_ru.force_encoding('utf-8') %></div>
+          <div class="form-control summernote"><%=raw @nova.body_ru.force_encoding('utf-8') %></div>
         <% elsif params[:action] == 'new' %>
           <div class="form-control summernote"></div>
         <% end %>
@@ -176,7 +176,7 @@
     $("#add_image").click(function(e){
        e.preventDefault();
       $.ajax({
-        url: '/<%=I18n.locale%>/presses/add_simple_images',
+        url: '/<%=I18n.locale%>/novas/add_simple_images',
         success: function(data){
           var item = $(data).html();
           $('.dropzone').append(item);

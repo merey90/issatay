@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160115113224) do
+ActiveRecord::Schema.define(version: 20160411054241) do
 
   create_table "albums", force: :cascade do |t|
     t.string   "picture"
@@ -59,6 +59,35 @@ ActiveRecord::Schema.define(version: 20160115113224) do
   add_index "carousels", ["title_kz"], name: "index_carousels_on_title_kz"
   add_index "carousels", ["title_ru"], name: "index_carousels_on_title_ru"
   add_index "carousels", ["user_id"], name: "index_carousels_on_user_id"
+
+  create_table "novas", force: :cascade do |t|
+    t.string   "title"
+    t.string   "title_kz"
+    t.string   "title_ru"
+    t.binary   "body"
+    t.binary   "body_kz"
+    t.binary   "body_ru"
+    t.text     "short_body"
+    t.text     "short_body_kz"
+    t.text     "short_body_ru"
+    t.string   "url"
+    t.datetime "deleted_at"
+    t.integer  "user_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "novas", ["body"], name: "index_novas_on_body"
+  add_index "novas", ["body_kz"], name: "index_novas_on_body_kz"
+  add_index "novas", ["body_ru"], name: "index_novas_on_body_ru"
+  add_index "novas", ["deleted_at"], name: "index_novas_on_deleted_at"
+  add_index "novas", ["short_body"], name: "index_novas_on_short_body"
+  add_index "novas", ["short_body_kz"], name: "index_novas_on_short_body_kz"
+  add_index "novas", ["short_body_ru"], name: "index_novas_on_short_body_ru"
+  add_index "novas", ["title"], name: "index_novas_on_title"
+  add_index "novas", ["title_kz"], name: "index_novas_on_title_kz"
+  add_index "novas", ["title_ru"], name: "index_novas_on_title_ru"
+  add_index "novas", ["user_id"], name: "index_novas_on_user_id"
 
   create_table "presses", force: :cascade do |t|
     t.string   "title"

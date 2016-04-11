@@ -5,7 +5,7 @@ class PressesController < ApplicationController
 
   # GET /presses
   def index
-    @presses = Press.paginate(page: params[:page], :per_page => 10)
+    @presses = Press.paginate(page: params[:page], :per_page => 10).order('created_at DESC')
   end
 
   # GET /presses/1

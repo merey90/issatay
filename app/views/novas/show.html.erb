@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+<div class="nova_container">
+  <% if I18n.locale == :en %>
+  <%= render :partial => "show_nova", locals: {title: @nova.title, body: @nova.body.force_encoding("utf-8") } %>
+
+  <% elsif I18n.locale == :kz %>
+    <%= render :partial => "show_nova", locals: {title: @nova.title_kz, body: @nova.body_kz.force_encoding("utf-8") } %>
+  
+  
+  <%  elsif I18n.locale == :ru %>
+   <%= render :partial => "show_nova", locals: {title: @nova.title_ru, body: @nova.body_ru.force_encoding("utf-8") } %>
+  <% end %>
+  
+  <div class="clearfix"></div>
+    <% if @nova.simple_images.any? %>
+    <div class="row simple_images_container">
+      <% @nova.simple_images.each do |simage| %>
+            <% if I18n.locale == :en %>
+              <%= render :partial => "simple_images/simple_image", locals: {id: simage.id, title: simage.title, description: simage.description, url: simage.picture.url } %>
+            <% elsif I18n.locale == :kz %>
+              <%= render :partial => "simple_images/simple_image", locals: {id: simage.id, title: simage.title_kz.blank? ? simage.title : simage.title_kz, description: simage.description_kz.blank? ? simage.description : simage.description_kz, url: simage.picture.url } %>
+            <% elsif I18n.locale == :ru %>
+              <%= render :partial => "simple_images/simple_image", locals: {id: simage.id, title: simage.title_ru.blank? ? simage.title : simage.title_ru, description: simage.description_ru.blank? ? simage.description : simage.description_ru, url: simage.picture.url } %>
+            <% end %>
+      <% end %>
+    </div>
+    <% end %>
+</div>
+
+<div class="clearfix"></div>
+
+
+<% if logged_in? %>
+<%= link_to 'Edit', edit_nova_path(@nova) %> |
+<%= link_to 'Destroy', @nova, method: :delete, data: { confirm: 'Are you sure?' } %> |
+<% end %>
+<%= link_to 'Back', novas_path %>
+
+<%= render :partial => "simple_images/simple_image_modal" %>
+
+<script type="text/javascript">
+  $(function(){
+    fixRatio();
+  });//ready function
+</script>

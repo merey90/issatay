@@ -3,7 +3,6 @@ class Carousel < ActiveRecord::Base
     mount_uploader :picture, PictureUploader
     
     validates :user_id, presence: true
-    validates :title, presence: true
     validates :url, presence: true
     validates :picture, presence: true
     

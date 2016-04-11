@@ -1,0 +1,11 @@
+<% provide(:title, t("news")) %>
+<p id="notice"><%= notice %></p>
+<% if logged_in? %>
+<%= link_to ('New News <i class="fa fa-plus"></i>').html_safe, new_nova_path, :class => "btn btn-success form-control" %>
+<% end %>
+
+  <div class="row novas_container">
+    <%= render @novas %>
+  </div>
+<%= will_paginate %>
+<br>

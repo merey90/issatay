@@ -1,0 +1,47 @@
+<div class="row nova_block">
+    <div class="col-xs-3 col-sm-1">
+      <% if nova.simple_images.any? %>
+        <%= link_to (image_tag nova.simple_images.last.picture.url, :class => "nova_picture"), nova, :title => t("details") %>
+      <% elsif %>
+        <%= link_to (image_tag 'paintbrush', :class => "nova_picture"), nova, :title => t("details") %>
+      <% end %>
+    </div>
+    <div class="col-xs-9 col-sm-11">
+      <% if I18n.locale == :en %>
+        <div class="row">
+          <%= link_to nova.title, nova %>
+        </div>
+        <div class="row">
+          <%= nova.short_body %>
+        </div>
+        <div class="row">
+          <small><%= t 'publish_date' %>: <%= l nova.created_at, :format => :long %></small>
+        </div>
+        
+        
+      <% elsif I18n.locale == :kz %>
+        <div class="row">
+          <%= link_to nova.title_kz.blank? ? nova.title : nova.title_kz , nova %>
+        </div>
+        <div class="row">
+          <%= nova.short_body_kz.blank? ? nova.short_body : nova.short_body_kz  %>
+        </div>
+        <div class="row">
+          <small><%= t 'publish_date' %>: <%= l nova.created_at, :format => :long %></small>
+        </div>
+        
+        
+      <% elsif I18n.locale == :ru %>
+        <div class="row">
+          <%= link_to nova.title_ru.blank? ? nova.title : nova.title_ru, nova %>
+        </div>
+        <div class="row">
+          <%= nova.short_body_ru.blank? ? nova.short_body : nova.short_body_ru  %>
+        </div>
+        <div class="row">
+          <small><%= t 'publish_date' %>: <%= l nova.created_at, :format => :long %></small>
+        </div>
+      <% end %>
+      
+    </div>
+</div>

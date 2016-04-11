@@ -1,5 +1,4 @@
-# encoding: UTF-8
-class Press < ActiveRecord::Base
+class Nova < ActiveRecord::Base
     belongs_to :user
     has_many :simple_images, as: :imageable, :dependent => :destroy
     accepts_nested_attributes_for :simple_images, allow_destroy: true

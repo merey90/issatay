@@ -29,6 +29,11 @@ Rails.application.routes.draw do
           get :add_simple_images
       end
     end
+    resources :novas do
+      collection do
+          get :add_simple_images
+      end
+    end
     resources :albums do
       collection do
           get :add_simple_images

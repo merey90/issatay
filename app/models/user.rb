@@ -1,6 +1,7 @@
 # encoding: UTF-8
 class User < ActiveRecord::Base
   has_many :presses, :dependent => :destroy
+  has_many :novas, :dependent => :destroy
   has_many :albums, :dependent => :destroy
   has_many :carousels, :dependent => :destroy
   attr_accessor :remember_token, :reset_token
