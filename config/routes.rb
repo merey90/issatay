@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     get 'home'    => 'static_pages#home'
     get 'help'    => 'static_pages#help'
     get 'about'   => 'static_pages#about'
+    get 'biography' => 'static_pages#biography'
     get 'contact' => 'static_pages#contact'
     
     # get 'signup'  => 'users#new'
@@ -40,6 +41,7 @@ Rails.application.routes.draw do
       end
     end
     resources :carousels
+    resources :static_fields,     only: [:new, :create]
   end
   
   root to: redirect("/#{I18n.default_locale}"), as: :redirected_root

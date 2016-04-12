@@ -1,0 +1,23 @@
+<h1>Static fields</h1>
+
+<%= render 'form' %>
+
+<%= link_to 'Back', home_path %>
+
+<script type="text/javascript">
+    
+    $(function(){
+        $('.summernote').each(function(){
+            $(this).summernote({
+              lang: 'ru-RU',
+              minHeight: 200,
+              height: 200,
+              callbacks: {
+                onInit: function() {
+                   $(this).parent().find('.hidden_body').val($(this).summernote('code'));
+                }
+              }
+            });
+        });
+    });//document ready func
+</script>

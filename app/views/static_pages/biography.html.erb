@@ -1,0 +1,6 @@
+<% provide(:title, "Biography") %>
+<% if is_admin? %>
+  <%= link_to "Редактировать", new_static_field_path, {:class=>"btn btn-default pull-right"} %>
+<% end %>
+
+<%=raw @biography.force_encoding("utf-8") %>

@@ -46,7 +46,7 @@
     <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
     <span class="sr-only">Next</span>
   </a>
-  <% if logged_in? %>
+  <% if is_admin? %>
   <%= link_to "Редактировать", carousels_path, {:class=>"btn btn-danger edit_carousel_btn"} %>
   <% end %>
 </div>

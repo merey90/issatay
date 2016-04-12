@@ -1,0 +1,2 @@
+module StaticFieldsHelper
+end
