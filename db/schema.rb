@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160411112750) do
+ActiveRecord::Schema.define(version: 20160412105235) do
 
   create_table "albums", force: :cascade do |t|
     t.string   "picture"
@@ -151,6 +151,15 @@ ActiveRecord::Schema.define(version: 20160411112750) do
     t.binary   "contacts_ru"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+    t.binary   "about"
+    t.binary   "about_kz"
+    t.binary   "about_ru"
+    t.binary   "home"
+    t.binary   "home_kz"
+    t.binary   "home_ru"
+    t.binary   "help"
+    t.binary   "help_kz"
+    t.binary   "help_ru"
   end
 
   add_index "static_fields", ["biography"], name: "index_static_fields_on_biography"

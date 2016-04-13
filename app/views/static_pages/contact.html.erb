@@ -1,6 +1,18 @@
-<% provide(:title, "Contact") %>
-<h1>Contact</h1>
-<p>
-  Contact the Ruby on Rails Tutorial about the sample app at the
-  <a href="http://www.railstutorial.org/#contact">contact page</a>.
-</p>
+<% provide(:title, "Contacts") %>
+<% if is_admin? %>
+  <%= link_to "Редактировать", new_static_field_path, {:class=>"btn btn-default pull-right"} %>
+<% end %>
+
+<div class="col-xs-12" id ="gisWidget">
+  <a class="dg-widget-link" href="http://2gis.kz/almaty/firm/9429940000784759/center/76.94485187530519,43.258752751044234/zoom/16?utm_medium=widget-source&utm_campaign=firmsonmap&utm_source=bigMap">Посмотреть на карте Алматы</a><div class="dg-widget-link"><a href="http://2gis.kz/almaty/center/76.944849,43.258754/zoom/16/routeTab/rsType/bus/to/76.944849,43.258754╎Союз художников Республики Казахстан?utm_medium=widget-source&utm_campaign=firmsonmap&utm_source=route">Найти проезд до Союз художников Республики Казахстан</a></div><script charset="utf-8">new DGWidgetLoader({"width":640,"height":600,"borderColor":"#a3a3a3","pos":{"lat":43.258752751044234,"lon":76.94485187530519,"zoom":16},"opt":{"city":"almaty"},"org":[{"id":"9429940000784759"}]});</script><noscript style="color:#c00;font-size:16px;font-weight:bold;">Виджет карты использует JavaScript. Включите его в настройках вашего браузера.</noscript>
+</div>
+
+<div class="clearfix"></div>
+<% unless @contacts.nil? %>
+<div class="col-xs-12">
+  <%=raw @contacts.force_encoding("utf-8") %>
+</div>
+<% end %>
+
+
+

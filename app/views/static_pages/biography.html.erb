@@ -2,5 +2,6 @@
 <% if is_admin? %>
   <%= link_to "Редактировать", new_static_field_path, {:class=>"btn btn-default pull-right"} %>
 <% end %>
-
+<div class="col-xs-12">
 <%=raw @biography.force_encoding("utf-8") %>
+</div>

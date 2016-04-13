@@ -1,5 +1,7 @@
 <% provide(:title, "About") %>
-<h1>About</h1>
-<p>
-  art gallery
-</p>
+<% if is_admin? %>
+  <%= link_to "Редактировать", new_static_field_path, {:class=>"btn btn-default pull-right"} %>
+<% end %>
+<div class="col-xs-12">
+<%=raw @about.force_encoding("utf-8") %>
+</div>

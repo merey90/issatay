@@ -1,4 +1,4 @@
-<%= form_for(@static_field) do |f| %>
+<%= form_for @static_field, url: static_fields_path(@static_field, locale: params[:locale]), html: { method: :post } do |f| %>
   <% if @static_field.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@static_field.errors.count, "error") %> prohibited this static_field from being saved:</h2>
@@ -16,7 +16,11 @@
     <div class="col-sm-10">
       <div class="row">
         <%= f.hidden_field :biography, :class => "hidden_body" %>
-        <div class="form-control summernote"><%=raw @static_field.biography %></div>
+        <div class="form-control summernote">
+          <% unless @static_field.biography.nil? %>
+            <%=raw @static_field.biography %>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>
@@ -27,7 +31,7 @@
       <div class="row">
         <%= f.hidden_field :biography_kz, :class => "hidden_body", :value => "" %>
         <div class="form-control summernote">
-          <% if params[:action] == 'edit' %>
+          <% unless @static_field.biography_kz.nil? %>
             <%=raw @static_field.biography_kz.force_encoding('utf-8') %>
           <% end %>
         </div>
@@ -41,8 +45,176 @@
       <div class="row">
         <%= f.hidden_field :biography_ru, :class => "hidden_body", :value => "" %>
         <div class="form-control summernote">
-          <% if params[:action] == 'edit' %>
+          <% unless @static_field.biography_ru.nil? %>
             <%=raw @static_field.biography_ru.force_encoding('utf-8') %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="form-group">
+    <%= f.label :contacts, :class => "control-label col-sm-2" %>
+    <div class="col-sm-10">
+      <div class="row">
+        <%= f.hidden_field :contacts, :class => "hidden_body" %>
+        <div class="form-control summernote">
+          <% unless @static_field.contacts.nil? %>
+            <%=raw @static_field.contacts %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :contacts_kz, :class => "control-label col-sm-2" %>
+    <div class="col-sm-10">
+      <div class="row">
+        <%= f.hidden_field :contacts_kz, :class => "hidden_body", :value => "" %>
+        <div class="form-control summernote">
+          <% unless @static_field.contacts_kz.nil? %>
+            <%=raw @static_field.contacts_kz.force_encoding('utf-8') %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :contacts_ru, :class => "control-label col-sm-2" %>
+    <div class="col-sm-10">
+      <div class="row">
+        <%= f.hidden_field :contacts_ru, :class => "hidden_body", :value => "" %>
+        <div class="form-control summernote">
+          <% unless @static_field.contacts_ru.nil? %>
+            <%=raw @static_field.contacts_ru.force_encoding('utf-8') %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="form-group">
+    <%= f.label :about, :class => "control-label col-sm-2" %>
+    <div class="col-sm-10">
+      <div class="row">
+        <%= f.hidden_field :about, :class => "hidden_body" %>
+        <div class="form-control summernote">
+          <% unless @static_field.about.nil? %>
+            <%=raw @static_field.about %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :about_kz, :class => "control-label col-sm-2" %>
+    <div class="col-sm-10">
+      <div class="row">
+        <%= f.hidden_field :about_kz, :class => "hidden_body", :value => "" %>
+        <div class="form-control summernote">
+          <% unless @static_field.about_kz.nil? %>
+            <%=raw @static_field.about_kz.force_encoding('utf-8') %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :about_ru, :class => "control-label col-sm-2" %>
+    <div class="col-sm-10">
+      <div class="row">
+        <%= f.hidden_field :about_ru, :class => "hidden_body", :value => "" %>
+        <div class="form-control summernote">
+          <% unless @static_field.about_ru.nil? %>
+            <%=raw @static_field.about_ru.force_encoding('utf-8') %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="form-group">
+    <%= f.label :help, :class => "control-label col-sm-2" %>
+    <div class="col-sm-10">
+      <div class="row">
+        <%= f.hidden_field :help, :class => "hidden_body" %>
+        <div class="form-control summernote">
+          <% unless @static_field.help.nil? %>
+            <%=raw @static_field.help %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :help_kz, :class => "control-label col-sm-2" %>
+    <div class="col-sm-10">
+      <div class="row">
+        <%= f.hidden_field :help_kz, :class => "hidden_body", :value => "" %>
+        <div class="form-control summernote">
+          <% unless @static_field.help_kz.nil? %>
+            <%=raw @static_field.help_kz.force_encoding('utf-8') %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :help_ru, :class => "control-label col-sm-2" %>
+    <div class="col-sm-10">
+      <div class="row">
+        <%= f.hidden_field :help_ru, :class => "hidden_body", :value => "" %>
+        <div class="form-control summernote">
+          <% unless @static_field.help_ru.nil? %>
+            <%=raw @static_field.help_ru.force_encoding('utf-8') %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="form-group">
+    <%= f.label :home, :class => "control-label col-sm-2" %>
+    <div class="col-sm-10">
+      <div class="row">
+        <%= f.hidden_field :home, :class => "hidden_body" %>
+        <div class="form-control summernote">
+          <% unless @static_field.home.nil? %>
+            <%=raw @static_field.home %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :home_kz, :class => "control-label col-sm-2" %>
+    <div class="col-sm-10">
+      <div class="row">
+        <%= f.hidden_field :home_kz, :class => "hidden_body", :value => "" %>
+        <div class="form-control summernote">
+          <% unless @static_field.home_kz.nil? %>
+            <%=raw @static_field.home_kz.force_encoding('utf-8') %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :home_ru, :class => "control-label col-sm-2" %>
+    <div class="col-sm-10">
+      <div class="row">
+        <%= f.hidden_field :home_ru, :class => "hidden_body", :value => "" %>
+        <div class="form-control summernote">
+          <% unless @static_field.home_ru.nil? %>
+            <%=raw @static_field.home_ru.force_encoding('utf-8') %>
           <% end %>
         </div>
       </div>

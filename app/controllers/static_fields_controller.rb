@@ -1,5 +1,4 @@
 class StaticFieldsController < ApplicationController
-  # before_action :set_fields, only: [:edit, :update]
   before_action :admin_user, only: [:new, :create]
 
   # GET /static_fields/new
@@ -10,10 +9,6 @@ class StaticFieldsController < ApplicationController
         @static_field = StaticField.first  
       end
   end
-
-  # GET /static_fields/1/edit
-  # def edit
-  # end
 
   # POST /static_fields
   def create
@@ -38,17 +33,6 @@ class StaticFieldsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /static_fields/1
-  # def update
-  #   if @static_field.update(field_params)
-  #     flash[:success] = "Data was successfully updated."
-  #     redirect_to @static_field
-  #   else
-  #     flash[:danger] = flash_error_message(@static_field)
-  #     render :edit
-  #   end
-  # end
-
   private
     def flash_error_message(arg)
       "Форма содержит #{arg.errors.count} ошибок: #{arg.errors.full_messages.join(', ')}"
@@ -61,6 +45,6 @@ class StaticFieldsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def field_params
-      params.require(:static_field).permit(:biography, :biography_kz, :biography_ru, :contacts, :contacts_kz, :contacts_ru)
+      params.require(:static_field).permit(:biography, :biography_kz, :biography_ru, :contacts, :contacts_kz, :contacts_ru, :about, :about_kz, :about_ru, :home, :home_kz, :home_ru, :help, :help_kz, :help_ru)
     end
 end

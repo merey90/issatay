@@ -1,11 +1,7 @@
 <% provide(:title, "Help") %>
-
-<h1>Help</h1>
-<p>
-  Get help on the Ruby on Rails Tutorial at the
-  <a href="http://www.railstutorial.org/#help">Rails Tutorial help
-  section</a>.
-  To get help on this sample app, see the
-  <a href="http://www.railstutorial.org/book"><em>Ruby on Rails
-  Tutorial</em> book</a>.
-</p>
+<% if is_admin? %>
+  <%= link_to "Редактировать", new_static_field_path, {:class=>"btn btn-default pull-right"} %>
+<% end %>
+<div class="col-xs-12">
+<%=raw @help.force_encoding("utf-8") %>
+</div>

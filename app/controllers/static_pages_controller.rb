@@ -1,6 +1,18 @@
 class StaticPagesController < ApplicationController
   def home
      @carousels = Carousel.all
+     
+    unless StaticField.first.blank?
+      if I18n.locale == :en
+        @home = StaticField.first.help
+      elsif I18n.locale == :kz
+        @home = StaticField.first.help_kz.blank? ? StaticField.first.help : StaticField.first.help_kz
+      elsif I18n.locale == :ru
+        @home = StaticField.first.help_ru.blank? ? StaticField.first.help : StaticField.first.help_ru
+      end
+    end
+    
+    return @carousels, @home
   end
 
   def help
