@@ -50,7 +50,8 @@ class PressesController < ApplicationController
       flash[:success] = "Press updated!"
       redirect_to @press
     else
-      render 'presses/%{@press.id}/edit'
+      # render '%{I18n.locale}/presses/%{@press.id}/edit'
+      render :edit
     end
   end
 

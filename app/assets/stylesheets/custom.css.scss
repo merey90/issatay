@@ -53,7 +53,7 @@ textarea {
 }
 #wrap{
   min-height: 100%;
-  background-color: #999;
+  background-color: #fff;
   #mainContainer{
     // overflow: auto;
     // padding-left: 15px;
@@ -155,6 +155,17 @@ nav.navbar{
   top: 0;
   left: 0;
   right: 0;
+  &.navbar-inverse{
+    background: image-url("header.png");
+    .navbar-nav > li{
+      &> a{
+        color: #333;
+      }
+      &.active > a{
+        color: white;
+      }
+    } 
+  }
   .container{
     padding-left:0px;
     padding-right:0px;
@@ -167,6 +178,10 @@ nav.navbar{
         padding-right:0px;
         margin-left: 0px;
         margin-right: 0px;
+        background-color:#999;
+    @media(min-width: 768px){
+      background-color: transparent;
+    }
         .navbar-nav{
           margin-left: 0px;
           margin-right: 0px;

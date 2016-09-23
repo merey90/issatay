@@ -1,15 +1,29 @@
+<div class="row">
+  <div class="col-xs-12">
+  <% if logged_in? %>
+    <%= link_to 'Edit', edit_press_path(press) %> |
+    <%= link_to 'Destroy', press, method: :delete, data: { confirm: 'Are you sure?' } %>
+  <% end %>
+  </div>
+</div>
 <div class="row press_block">
     <div class="col-xs-3 col-sm-1">
-      <% if press.simple_images.any? %>
-        <%= link_to (image_tag press.simple_images.last.picture.url, :class => "press_picture"), press, :title => t("details") %>
+      <% if press.url.blank? %>
+        <% if press.simple_images.any? %>
+          <%= link_to (image_tag press.simple_images.last.picture.url, :class => "press_picture"), press, :title => t("details") %>
+        <% elsif %>
+          <%= link_to (image_tag 'paintbrush', :class => "press_picture"), press, :title => t("details") %>
+        <% end %>
       <% elsif %>
-        <%= link_to (image_tag 'paintbrush', :class => "press_picture"), press, :title => t("details") %>
+        <a href="<%= press.url %>" target="_blank">
+          <%= image_tag  press.simple_images.any? ? press.simple_images.last.picture.url : 'paintbrush', :class => "press_picture" %>
+        </a>
       <% end %>
     </div>
     <div class="col-xs-9 col-sm-11">
       <% if I18n.locale == :en %>
         <div class="row">
-          <%= link_to press.title, press %>
+          <%= link_to press.title , press.url.blank? ? press : press.url , target: "_blank" %>
         </div>
         <div class="row">
           <%= press.short_body %>
@@ -21,7 +35,7 @@
         
       <% elsif I18n.locale == :kz %>
         <div class="row">
-          <%= link_to press.title_kz.blank? ? press.title : press.title_kz , press %>
+          <%= link_to press.title_kz.blank? ? press.title : press.title_kz , press.url.blank? ? press : press.url, target: "_blank" %>
         </div>
         <div class="row">
           <%= press.short_body_kz.blank? ? press.short_body : press.short_body_kz  %>
@@ -33,7 +47,7 @@
         
       <% elsif I18n.locale == :ru %>
         <div class="row">
-          <%= link_to press.title_ru.blank? ? press.title : press.title_ru, press %>
+          <%= link_to press.title_ru.blank? ? press.title : press.title_ru, press.url.blank? ? press : press.url, target: "_blank" %>
         </div>
         <div class="row">
           <%= press.short_body_ru.blank? ? press.short_body : press.short_body_ru  %>
