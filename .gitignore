@@ -23,3 +23,9 @@
 /public/uploads
 
 RackMultipart*
+
+/config/database.yml # доступ к базе данным
+/Procfile
+/config/deploy/
+/shared/
+/public/system/
